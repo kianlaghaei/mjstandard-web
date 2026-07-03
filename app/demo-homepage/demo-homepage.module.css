@@ -268,6 +268,11 @@
 
 .badge {
   min-width: 170px;
+  margin-bottom: 20px;
+  transition: all 0.2 ease;
+}
+.badge:hover {
+  transform: translateX(-2px);
 }
 
 .trustRow::-webkit-scrollbar {
@@ -292,7 +297,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fadeUpText,
-  .heroBadge {
+  .heroBadge,
+  .aboutImage,
+  .aboutText {
     animation: none;
     opacity: 1;
     transform: none;
@@ -342,6 +349,67 @@
   max-width: 860px;
   display: grid;
   gap: 14px;
+}
+
+.aboutSection {
+  display: grid;
+  align-items: center;
+  gap: 50px;
+  grid-template-columns: 1.1fr 1fr;
+}
+
+@keyframes aboutImageIn {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes aboutTextIn {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.aboutImage {
+  width: 100%;
+  max-width: 560px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(8, 35, 57, 0.14);
+  opacity: 0;
+  transform: translateX(-28px);
+  will-change: transform, opacity;
+}
+
+.aboutText {
+  opacity: 0;
+  transform: translateX(28px);
+  will-change: transform, opacity;
+}
+
+.aboutImage:hover {
+  transform: translateY(-2px);
+}
+
+.aboutImageInView {
+  animation: aboutImageIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.15s;
+}
+
+.aboutTextInView {
+  animation: aboutTextIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.22s;
 }
 
 .rtl {
@@ -460,6 +528,10 @@
 }
 
 @media (max-width: 1024px) {
+  .aboutSection {
+    grid-template-columns: 1fr;
+  }
+
   .cardGrid,
   .whyGrid {
     grid-template-columns: 1fr;

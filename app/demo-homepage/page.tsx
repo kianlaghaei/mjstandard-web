@@ -1,12 +1,16 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import logo from "./mjstandard-logo.jpg";
+import menInLab from "./men-lab-doing-experiments-close-up.jpg";
 import styles from "./demo-homepage.module.css";
 
 const serviceItems = [
   {
-    title: "Calibration & Standards",
+    title: "فهرست استانداردهای ملی و بین المللی ",
     description:
-      "Precision calibration workflows for quality labs with documented evidence and repeatable procedures.",
+      "دسترسی سریع به آخرین ضوابط و معیارهای قانونی تولید و ارزیابی کالا در ایران و سراسر جهان با رعایت این استانداردها، اعتبار محصول خود را بالا برده و مسیر صادرات و فروش را هموار کنید.",
   },
   {
     title: "Material Testing",
@@ -35,6 +39,30 @@ const certifications = [
 ];
 
 export default function DemoHomepage() {
+  const aboutSectionRef = useRef<HTMLElement>(null);
+  const [isAboutVisible, setIsAboutVisible] = useState(false);
+
+  useEffect(() => {
+    const node = aboutSectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setIsAboutVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.25,
+        rootMargin: "0px 0px -12% 0px",
+      },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className={styles.page} dir="rtl">
       <div
@@ -96,17 +124,32 @@ export default function DemoHomepage() {
           </div>
         </section>
 
-        <section id="about" className={`${styles.section} ${styles.alt}`}>
+        <section
+          id="about"
+          ref={aboutSectionRef}
+          className={`${styles.section} ${styles.alt}`}
+        >
           <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>درباره ما</h2>
-            </div>
-            <div className={styles.textBlock}>
-              <p dir="rtl" className={styles.rtl}>
-                آزمایشگاه تخصصی و اکرودیته سازمان ملی استاندارد ایران در حوزه
-                اجرای الزامات استانداردهای روشنایی و ایمنی لوازم الکتریکی و
-                انرژی و انواع باتری های قابل شارژ فعالیت دارد
-              </p>
+            <div className={styles.aboutSection}>
+              <div
+                className={`${styles.aboutText} ${isAboutVisible ? styles.aboutTextInView : ""}`}
+              >
+                <div className={styles.sectionHeader}>
+                  <h2 className={styles.sectionTitle}>درباره ما</h2>
+                </div>
+                <div className={styles.textBlock}>
+                  <p dir="rtl" className={styles.rtl}>
+                    آزمایشگاه تخصصی و اکرودیته سازمان ملی استاندارد ایران در
+                    حوزه اجرای الزامات استانداردهای روشنایی و ایمنی لوازم
+                    الکتریکی و انرژی و انواع باتری های قابل شارژ فعالیت دارد
+                  </p>
+                </div>
+              </div>
+              <img
+                className={`${styles.aboutImage} ${isAboutVisible ? styles.aboutImageInView : ""}`}
+                src={menInLab.src}
+                alt="Meyargaran Jahan lab experiment"
+              />
             </div>
           </div>
         </section>
@@ -115,7 +158,7 @@ export default function DemoHomepage() {
           <div className={styles.container}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>خدمات</h2>
-              <p>برخی از خدمات آزمایشگاه معیارگران جهان</p>
+              <p>برخی از خدمات آزمایشگاه معیارگران جهان </p>
             </div>
             <div className={styles.cardGrid}>
               {serviceItems.map((service) => (
