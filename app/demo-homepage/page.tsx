@@ -2,33 +2,57 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import logo from "./mjstandard-logo.jpg";
-import menInLab from "./men-lab-doing-experiments-close-up.jpg";
+import logo from "./img/mjstandard-logo.jpg";
+import menInLab from "./img/men-lab-doing-experiments-close-up.jpg";
 import styles from "./demo-homepage.module.css";
 
 const serviceItems = [
   {
     title: "فهرست استانداردهای ملی و بین المللی ",
     description:
-      "دسترسی سریع به آخرین ضوابط و معیارهای قانونی تولید و ارزیابی کالا در ایران و سراسر جهان با رعایت این استانداردها، اعتبار محصول خود را بالا برده و مسیر صادرات و فروش را هموار کنید.",
+      "تضمین اعتبار جهانی و رفع موانع قانونی برای فروش آسان محصول شما.",
   },
   {
-    title: "Material Testing",
+    title: "آزمون‌ها",
     description:
-      "Scientific testing protocols covering mechanical, thermal, and chemical validation requirements.",
+      "تبدیل محصول به کالایِ «تایید شده» برای جلب اطمینان قطعی خریداران.",
   },
   {
-    title: "Inspection & Audit",
+    title: "برق و الکترونیک",
     description:
-      "Pre-delivery and process audits with clear checklists, corrective action logs, and digital reports.",
+      "جلوگیری از خرابی‌های پرهزینه و افزایش ایمنیِ محصول در دست مشتری.",
+  },
+  {
+    title: "خودرو و نیروی محرکه",
+    description:
+      "تضمین انطباق قطعات با استانداردهای جاده‌ای و کاهش ریسک مرجوعی کالا.",
+  },
+  {
+    title: "مشاوره خرید و تامین کالا (واردات)",
+    description:
+      "حذف واسطه‌های غیرضروری و خرید کالا با بهترین کیفیت و کمترین قیمت.",
+  },
+  {
+    title: " گونیو فتومتری و طراحی روشنایی",
+    description: "ارتقای کیفیت نورپردازی فضا و کاهش چشمگیر هزینه‌های انرژی.",
+  },
+  {
+    title: "مشاوره خط تولید و ماشین‌آلات",
+    description:
+      "بهینه‌سازی هزینه‌های تولید و افزایش سرعت خروجی خط مونتاژ شما.",
+  },
+  {
+    title: "مشاوره فنی و درخواست آزمون",
+    description:
+      "کاهش زمان انتظار برای دریافت مجوزها و تسریع ورود محصول به بازار.",
   },
 ];
 
 const trustPoints = [
-  { label: "دستگاه مجهز", value: "120" },
-  { label: "گواهینامه معتبر", value: "12" },
-  { label: "پرسنل ماهر", value: "20" },
-  { label: "آموزش دیده شده", value: "91" },
+  { label: "دستگاه مجهز", value: 120 },
+  { label: "گواهینامه معتبر", value: 12 },
+  { label: "پرسنل ماهر", value: 20 },
+  { label: "آموزش دیده شده", value: 91 },
 ];
 
 const certifications = [
@@ -39,8 +63,91 @@ const certifications = [
 ];
 
 export default function DemoHomepage() {
+  const heroSectionRef = useRef<HTMLElement>(null);
   const aboutSectionRef = useRef<HTMLElement>(null);
   const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const [heroCounts, setHeroCounts] = useState<number[]>(
+    trustPoints.map(() => 0),
+  );
+
+  useEffect(() => {
+    const node = heroSectionRef.current;
+    if (!node) return;
+
+    const prefersReduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduceMotion) {
+      setHeroCounts(trustPoints.map((point) => point.value));
+      return;
+    }
+
+    const startCounters = () => {
+      const duration = 1100;
+      const rafIds: number[] = [];
+
+      trustPoints.forEach((point, index) => {
+        const start = performance.now();
+        const endValue = point.value;
+        const delay = index * 140;
+
+        const step = (now: number) => {
+          const rawProgress = now - start - delay;
+          const progress = Math.min(1, Math.max(0, rawProgress) / duration);
+          const eased = 1 - Math.pow(1 - progress, 2);
+          const nextValue = Math.round(eased * endValue);
+
+          setHeroCounts((previous) => {
+            const updated = [...previous];
+            updated[index] = nextValue;
+            return updated;
+          });
+
+          if (progress < 1) {
+            rafIds[index] = requestAnimationFrame(step);
+          } else {
+            setHeroCounts((previous) => {
+              const updated = [...previous];
+              updated[index] = endValue;
+              return updated;
+            });
+            rafIds[index] = 0;
+          }
+        };
+
+        rafIds[index] = requestAnimationFrame(step);
+      });
+
+      return () => {
+        rafIds.forEach((id) => {
+          if (id) cancelAnimationFrame(id);
+        });
+      };
+    };
+
+    let counterCleanup: (() => void) | undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          if (!counterCleanup) {
+            counterCleanup = startCounters();
+          }
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+      counterCleanup?.();
+    };
+  }, []);
 
   useEffect(() => {
     const node = aboutSectionRef.current;
@@ -92,7 +199,7 @@ export default function DemoHomepage() {
       </header>
 
       <main>
-        <section id="top" className={styles.hero}>
+        <section id="top" ref={heroSectionRef} className={styles.hero}>
           <div className={styles.container}>
             <div className={styles.heroContent}>
               <h1 className={`${styles.heroTitle} ${styles.fadeUpText}`}>
@@ -115,7 +222,7 @@ export default function DemoHomepage() {
                     className={`${styles.badge} ${styles.heroBadge}`}
                     style={{ animationDelay: `${index * 0.12 + 0.8}s` }}
                   >
-                    <strong>{point.value}</strong>
+                    <strong>{heroCounts[index]}</strong>
                     <span>{point.label}</span>
                   </div>
                 ))}
@@ -178,7 +285,7 @@ export default function DemoHomepage() {
         >
           <div className={styles.container}>
             <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>Certifications</h2>
+              <h2 className={styles.sectionTitle}>مدارک</h2>
               <p>
                 Trusted documentation and compliance signals for confident
                 procurement.

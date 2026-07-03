@@ -26,6 +26,8 @@
 .container {
   width: min(1200px, 92vw);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .navbar {
@@ -89,6 +91,8 @@
 
 .section,
 .ctaSection {
+  position: relative;
+  overflow: hidden;
   padding: 88px 0;
 }
 
@@ -101,6 +105,8 @@
 }
 
 .hero {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, #ba2c33, #025795);
   /* margin-top: calc(-1 * var(--nav-height)); */
   padding: calc(96px + var(--nav-height)) 0 170px;
@@ -108,11 +114,31 @@
   color: #ffffff;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.2),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(255, 255, 255, 0.12),
+      transparent 28%
+    );
+  pointer-events: none;
+}
+
 .hero :is(*) {
   color: #ffffff;
 }
 
 .heroContent {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -299,11 +325,28 @@
   .fadeUpText,
   .heroBadge,
   .aboutImage,
-  .aboutText {
+  .aboutText,
+  .navbar {
     animation: none;
     opacity: 1;
     transform: none;
   }
+}
+
+@keyframes navDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-160px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar {
+  animation: navDropIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.1s;
 }
 
 .statCard {
@@ -358,6 +401,11 @@
   grid-template-columns: 1.1fr 1fr;
 }
 
+.aboutImageWrap {
+  position: relative;
+  min-height: 320px;
+}
+
 @keyframes aboutImageIn {
   from {
     opacity: 0;
@@ -381,6 +429,8 @@
 }
 
 .aboutImage {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 560px;
   height: 320px;
@@ -390,6 +440,17 @@
   opacity: 0;
   transform: translateX(-28px);
   will-change: transform, opacity;
+}
+
+.aboutBackdrop {
+  position: absolute;
+  inset: -18px -18px -12px 18px;
+  width: calc(100% + 36px);
+  height: calc(100% + 30px);
+  object-fit: cover;
+  opacity: 0.28;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .aboutText {
@@ -437,8 +498,15 @@
 
 .card {
   padding: 24px;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
 }
 
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 1px 1px 3px;
+}
 .card h3 {
   margin-bottom: 10px;
 }
