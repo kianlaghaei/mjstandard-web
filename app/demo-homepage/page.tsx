@@ -5,6 +5,9 @@ import Link from "next/link";
 import logo from "./img/mjstandard-logo.jpg";
 import menInLab from "./img/men-lab-doing-experiments-close-up.jpg";
 import styles from "./demo-homepage.module.css";
+import bulb from "./img/bulb.png";
+import gridRed from "./img/grid_red.webp";
+import gridBlue from "./img/grid_blue.webp";
 
 const serviceItems = [
   {
@@ -189,11 +192,20 @@ export default function DemoHomepage() {
           </Link>
           <nav aria-label="Main navigation" className={styles.navLinks}>
             <a href="/demo-homepage#top">صفحه اصلی</a>
-            <Link href="#about">درباره ما</Link>
             <Link href="#services">خدمات</Link>
             <Link href="#certifications">مدرک ها</Link>
-            <Link href="#why-us">چرا ما؟</Link>
-            <Link href="#contact">ارتباط با ما</Link>
+
+            <div className={styles.navDropdown}>
+              <button type="button" className={styles.navDropdownToggle}>
+                درباره ما
+              </button>
+              <div className={styles.navDropdownMenu}>
+                <Link href="#about">درباره ما</Link>
+                <Link href="#why-us">چرا ما؟</Link>
+                <Link href="">تماس با ما</Link>
+              </div>
+            </div>
+            <Link href="#contact">بلاگ</Link>
           </nav>
         </div>
       </header>
@@ -236,6 +248,12 @@ export default function DemoHomepage() {
           ref={aboutSectionRef}
           className={`${styles.section} ${styles.alt}`}
         >
+          <div className={styles.aboutDecorTopRight} aria-hidden="true">
+            <img src={gridBlue.src} alt="" />
+          </div>
+          <div className={styles.aboutDecorBottomLeft} aria-hidden="true">
+            <img src={gridRed.src} alt="" />
+          </div>
           <div className={styles.container}>
             <div className={styles.aboutSection}>
               <div
@@ -261,10 +279,16 @@ export default function DemoHomepage() {
           </div>
         </section>
 
-        <section id="services" className={styles.section}>
+        <section
+          id="services"
+          className={`${styles.section} ${styles.servicesSection}`}
+        >
+          <div className={styles.servicesDecorTopLeft} aria-hidden="true">
+            <img src={bulb.src} alt="" />
+          </div>
           <div className={styles.container}>
             <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>خدمات</h2>
+              <h2 className={styles.sectionTitle}>خدمات آزمایشگاهی</h2>
               <p>برخی از خدمات آزمایشگاه معیارگران جهان </p>
             </div>
             <div className={styles.cardGrid}>
@@ -361,7 +385,108 @@ export default function DemoHomepage() {
 
       <footer className={styles.footer}>
         <div className={styles.container}>
-          <p>© {new Date().getFullYear()} Meyargaran Jahan | معیارگران جهان</p>
+          <div className={styles.footerGrid}>
+            <section
+              className={styles.footerBrand}
+              aria-label="Company overview"
+            >
+              <Link className={styles.footerLogo} href="/demo-homepage">
+                <img
+                  className={styles.footerLogoMark}
+                  src={logo.src}
+                  alt="Meyargaran Jahan logo"
+                />
+                <span>معیارگران جهان</span>
+              </Link>
+              <p className={styles.footerText}>
+                آزمایشگاه تخصصی و اکرودیته با تمرکز بر دقت، اعتماد و
+                استانداردهای حرفه‌ای.
+                <br />
+                راهکارهای شفاف برای کیفیت بهتر و تصمیم‌گیری سریع‌تر.
+              </p>
+              <div className={styles.socialLinks} aria-label="Social media">
+                <a href="#" aria-label="LinkedIn">
+                  in
+                </a>
+                <a href="#" aria-label="Instagram">
+                  ig
+                </a>
+                <a href="#" aria-label="Telegram">
+                  tg
+                </a>
+              </div>
+            </section>
+
+            <nav className={styles.footerCol} aria-label="Quick links">
+              <h3>لینک‌های سریع</h3>
+              <ul>
+                <li>
+                  <a href="#services">خدمات</a>
+                </li>
+                <li>
+                  <a href="#about">درباره ما</a>
+                </li>
+                <li>
+                  <a href="#why-us">فرصت‌های همکاری</a>
+                </li>
+                <li>
+                  <a href="#contact">ارتباط با ما</a>
+                </li>
+              </ul>
+            </nav>
+
+            <section
+              className={styles.footerCol}
+              aria-label="Contact information"
+            >
+              <h3>اطلاعات تماس</h3>
+              <ul className={styles.contactList}>
+                <li>
+                  <a href="mailto:info@mjstandard.com">info@mjstandard.com</a>
+                </li>
+                <li>
+                  <a href="tel:+982112345678">+98 21 1234 5678</a>
+                </li>
+                <li>
+                  تهران، خیابان ولیعصر، پلاک ۱۲۸
+                  <br />
+                  طبقه ۴، واحد ۱۰
+                </li>
+              </ul>
+            </section>
+
+            <section
+              className={styles.footerCol}
+              aria-label="Newsletter signup"
+            >
+              <h3>خبرنامه</h3>
+              <p className={styles.footerText}>
+                برای دریافت اخبار و به‌روزرسانی‌ها ایمیل خود را ثبت کنید.
+              </p>
+              <form className={styles.newsletterForm}>
+                <label className={styles.srOnly} htmlFor="footer-email">
+                  Email address
+                </label>
+                <input
+                  id="footer-email"
+                  type="email"
+                  name="email"
+                  placeholder="آدرس ایمیل"
+                />
+                <button type="submit">Subscribe</button>
+              </form>
+            </section>
+          </div>
+
+          <div className={styles.footerBottom}>
+            <p>
+              © {new Date().getFullYear()} معیارگران جهان. تمامی حقوق محفوظ است.
+            </p>
+            <div className={styles.legalLinks}>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
