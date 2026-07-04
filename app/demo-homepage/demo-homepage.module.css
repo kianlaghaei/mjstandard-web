@@ -148,6 +148,7 @@
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  transition: transform 0.2s ease;
 }
 
 .navLinks a:hover {
@@ -177,7 +178,8 @@
       rgba(255, 255, 255, 0.08),
       transparent 28%
     ),
-    linear-gradient(135deg, #025795 0%, #0b4f84 55%, #02406d 100%);
+    linear-gradient(180deg, #025795 0%, #0b4f84 55%, #be3c22 100%);
+  padding-bottom: 160px;
 }
 
 .servicesSection .sectionTitle,
@@ -209,6 +211,131 @@
 
 .servicesSection .card:hover {
   box-shadow: 0 18px 34px rgba(0, 20, 40, 0.16);
+}
+
+.teachServicesSection {
+  background:
+    radial-gradient(
+      circle at bottom left,
+      rgba(255, 255, 255, 0.08),
+      transparent 28%
+    ),
+    linear-gradient(180deg, #be3c22 0%, #9f351e 55%, #812d1b 85%, #f8fbff 95%);
+  padding-bottom: 250px;
+}
+
+.teachServicesDecorTopLeft {
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.92;
+  transform: rotate(45deg);
+}
+
+.teachServicesDecorTopLeft img {
+  display: block;
+  width: clamp(74px, 9vw, 140px);
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(8, 35, 57, 0.16));
+  animation: teachHatFloat 4.8s ease-in-out infinite;
+}
+
+.teachServicesHeader {
+  margin-bottom: 24px;
+}
+
+.teachServicesTitle {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+  line-height: 1.2;
+  font-family: Montserrat, Poppins, Arial, sans-serif;
+  font-weight: 800;
+}
+
+.teachServicesLead {
+  margin: 10px 0 0;
+  color: #ffffff;
+  max-width: 70ch;
+  font-family: Montserrat, Poppins, Arial, sans-serif;
+}
+
+.teachServicesGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.teachServicesCard {
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(26, 31, 44, 0.08);
+  border-radius: 16px;
+  background: #ffffffee;
+  box-shadow: 0 14px 28px rgba(0, 20, 40, 0.12);
+  transition: all 0.2s ease;
+}
+
+.teachServicesCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(0, 20, 40, 0.16);
+}
+
+.teachServicesCardAnimated {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.teachServicesCardFromLeft {
+  transform: translateX(-34px);
+}
+
+.teachServicesCardFromDown {
+  transform: translateY(30px);
+}
+
+.teachServicesCardFromRight {
+  transform: translateX(34px);
+}
+
+.teachServicesCardVisible {
+  animation: teachServiceCardIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.teachServicesCardTitle {
+  margin: 0 0 12px;
+  color: #1a1f2c;
+  font-size: 1.2rem;
+  font-family: Montserrat, Poppins, Arial, sans-serif;
+  font-weight: 800;
+}
+
+.teachServicesCardText {
+  margin: 0;
+  color: #44586a;
+  line-height: 1.7;
+  font-family: Montserrat, Poppins, Arial, sans-serif;
+}
+
+.teachServicesCardLink {
+  margin-top: 14px;
+  display: inline-block;
+  color: #be3c22;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.serviceCard {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.serviceCardVisible {
+  animation: serviceCardIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero {
@@ -261,6 +388,37 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes serviceCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes teachHatFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes teachServiceCardIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
   }
 }
 
@@ -399,6 +557,11 @@
   animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.aboutBadge {
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 .badge {
   min-width: 170px;
   margin-bottom: 20px;
@@ -425,6 +588,24 @@
 
 .badge strong {
   font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.badge.aboutBadge {
+  border-color: rgba(198, 33, 40, 0.18);
+  background: #c62128;
+  color: #ffffff;
+}
+
+.badge.aboutBadge strong {
+  color: #ffffff;
+}
+
+.badge.aboutBadge span {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.aboutBadge strong {
   color: #ffffff;
 }
 
@@ -994,7 +1175,8 @@
   }
 
   .cardGrid,
-  .whyGrid {
+  .whyGrid,
+  .teachServicesGrid {
     grid-template-columns: 1fr;
   }
 
@@ -1020,7 +1202,8 @@
   }
 
   .certGrid,
-  .cardGrid {
+  .cardGrid,
+  .teachServicesGrid {
     grid-template-columns: 1fr;
   }
 

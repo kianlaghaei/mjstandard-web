@@ -6,10 +6,28 @@ import logo from "./img/mjstandard-logo.jpg";
 import menInLab from "./img/men-lab-doing-experiments-close-up.jpg";
 import styles from "./demo-homepage.module.css";
 import bulb from "./img/bulb.png";
+import hat from "./img/education.png";
 import gridRed from "./img/grid_red.webp";
 import gridBlue from "./img/grid_blue.webp";
 
-const serviceItems = [
+const teachServicesItem = [
+  {
+    title: "آموزش طراحی تجهیزات آزمایشگاهی",
+    description:
+      "طراحی دقیق و مهندسی‌شده تجهیزات برای ساخت محصولات حرفه‌ای و کسب مزیت رقابتی در بازار.",
+  },
+  {
+    title: "آموزش نظارت بر ساخت و راه‌اندازی آزمایشگاه",
+    description:
+      "مدیریت اصولی ساخت و تجهیز آزمایشگاه برای دریافت سریع مجوزها و جلوگیری از هزینه‌های دوباره‌کاری.",
+  },
+  {
+    title: " آموزش مسئولان کنترل کیفی (QC) واحدهای تولیدی",
+    description:
+      "ارتقای مهارت تیم کنترل کیفیت برای کاهش چشمگیر ضایعات و تضمینِ استانداردهای محصول نهایی.",
+  },
+];
+const labServicesItem = [
   {
     title: "فهرست استانداردهای ملی و بین المللی ",
     description:
@@ -66,21 +84,25 @@ const certifications = [
 ];
 
 export default function DemoHomepage() {
-  const heroSectionRef = useRef<HTMLElement>(null);
   const aboutSectionRef = useRef<HTMLElement>(null);
+  const servicesSectionRef = useRef<HTMLElement>(null);
+  const teachServicesSectionRef = useRef<HTMLElement>(null);
   const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const [isServicesVisible, setIsServicesVisible] = useState(false);
+  const [isTeachServicesVisible, setIsTeachServicesVisible] = useState(false);
   const [heroCounts, setHeroCounts] = useState<number[]>(
     trustPoints.map(() => 0),
   );
 
   useEffect(() => {
-    const node = heroSectionRef.current;
+    const node = aboutSectionRef.current;
     if (!node) return;
 
     const prefersReduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     if (prefersReduceMotion) {
+      setIsAboutVisible(true);
       setHeroCounts(trustPoints.map((point) => point.value));
       return;
     }
@@ -133,6 +155,7 @@ export default function DemoHomepage() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
+          setIsAboutVisible(true);
           if (!counterCleanup) {
             counterCleanup = startCounters();
           }
@@ -140,12 +163,12 @@ export default function DemoHomepage() {
         }
       },
       {
-        threshold: 0.2,
+        threshold: 0.25,
+        rootMargin: "0px 0px -12% 0px",
       },
     );
 
     observer.observe(node);
-
     return () => {
       observer.disconnect();
       counterCleanup?.();
@@ -153,19 +176,56 @@ export default function DemoHomepage() {
   }, []);
 
   useEffect(() => {
-    const node = aboutSectionRef.current;
+    const node = servicesSectionRef.current;
     if (!node) return;
+
+    const prefersReduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduceMotion) {
+      setIsServicesVisible(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setIsAboutVisible(true);
+          setIsServicesVisible(true);
           observer.unobserve(entry.target);
         }
       },
       {
-        threshold: 0.25,
-        rootMargin: "0px 0px -12% 0px",
+        threshold: 0.18,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const node = teachServicesSectionRef.current;
+    if (!node) return;
+
+    const prefersReduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduceMotion) {
+      setIsTeachServicesVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setIsTeachServicesVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.18,
+        rootMargin: "0px 0px -10% 0px",
       },
     );
 
@@ -191,8 +251,16 @@ export default function DemoHomepage() {
             />
           </Link>
           <nav aria-label="Main navigation" className={styles.navLinks}>
-            <a href="/demo-homepage#top">صفحه اصلی</a>
-            <Link href="#services">خدمات</Link>
+            <a href="/demo-homepage">صفحه اصلی</a>
+            <div className={styles.navDropdown}>
+              <button type="button" className={styles.navDropdownToggle}>
+                خدمات
+              </button>
+              <div className={styles.navDropdownMenu}>
+                <Link href="#lab-services">خدمات آزمایشگاهی</Link>
+                <Link href="#teach-services">خدمات آموزشی</Link>
+              </div>
+            </div>
             <Link href="#certifications">مدرک ها</Link>
 
             <div className={styles.navDropdown}>
@@ -211,7 +279,7 @@ export default function DemoHomepage() {
       </header>
 
       <main>
-        <section id="top" ref={heroSectionRef} className={styles.hero}>
+        <section id="top" className={styles.hero}>
           <div className={styles.container}>
             <div className={styles.heroContent}>
               <h1 className={`${styles.heroTitle} ${styles.fadeUpText}`}>
@@ -226,18 +294,6 @@ export default function DemoHomepage() {
                 <a href="#contact" className={styles.btnPrimary}>
                   پیگیری آزمون
                 </a>
-              </div>
-              <div className={styles.trustRow}>
-                {trustPoints.map((point, index) => (
-                  <div
-                    key={point.label}
-                    className={`${styles.badge} ${styles.heroBadge}`}
-                    style={{ animationDelay: `${index * 0.12 + 0.8}s` }}
-                  >
-                    <strong>{heroCounts[index]}</strong>
-                    <span>{point.label}</span>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
@@ -269,6 +325,18 @@ export default function DemoHomepage() {
                     الکتریکی و انرژی و انواع باتری های قابل شارژ فعالیت دارد
                   </p>
                 </div>
+                <div className={styles.trustRow}>
+                  {trustPoints.map((point, index) => (
+                    <div
+                      key={point.label}
+                      className={`${styles.badge} ${styles.aboutBadge}`}
+                      style={{ animationDelay: `${index * 0.12 + 0.2}s` }}
+                    >
+                      <strong>{heroCounts[index]}</strong>
+                      <span>{point.label}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
               <img
                 className={`${styles.aboutImage} ${isAboutVisible ? styles.aboutImageInView : ""}`}
@@ -280,7 +348,8 @@ export default function DemoHomepage() {
         </section>
 
         <section
-          id="services"
+          id="lab-services"
+          ref={servicesSectionRef}
           className={`${styles.section} ${styles.servicesSection}`}
         >
           <div className={styles.servicesDecorTopLeft} aria-hidden="true">
@@ -292,11 +361,60 @@ export default function DemoHomepage() {
               <p>برخی از خدمات آزمایشگاه معیارگران جهان </p>
             </div>
             <div className={styles.cardGrid}>
-              {serviceItems.map((service) => (
-                <article className={styles.card} key={service.title}>
+              {labServicesItem.map((service, index) => (
+                <article
+                  className={`${styles.card} ${styles.serviceCard} ${isServicesVisible ? styles.serviceCardVisible : ""}`}
+                  key={service.title}
+                  style={{ animationDelay: `${index * 0.08 + 0.08}s` }}
+                >
                   <h3 className={styles.cardTitle}>{service.title}</h3>
                   <p>{service.description}</p>
                   <Link href="#contact">Learn more →</Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section
+          id="teach-services"
+          ref={teachServicesSectionRef}
+          className={`${styles.section} ${styles.teachServicesSection}`}
+        >
+          <div className={styles.teachServicesDecorTopLeft} aria-hidden="true">
+            <img src={hat.src} alt="" />
+          </div>
+          <div className={styles.container}>
+            <div className={styles.teachServicesHeader}>
+              <h2 className={styles.teachServicesTitle}>خدمات آموزشی</h2>
+              <p className={styles.teachServicesLead}>
+                برخی از خدمات آموزشی معیارگران جهان{" "}
+              </p>
+            </div>
+            <div className={styles.teachServicesGrid}>
+              {teachServicesItem.map((service, index) => (
+                <article
+                  className={`${styles.teachServicesCard} ${styles.teachServicesCardAnimated} ${
+                    index % 3 === 0
+                      ? styles.teachServicesCardFromRight
+                      : index % 3 === 1
+                        ? styles.teachServicesCardFromDown
+                        : styles.teachServicesCardFromLeft
+                  } ${isTeachServicesVisible ? styles.teachServicesCardVisible : ""}`}
+                  key={service.title}
+                  style={{ animationDelay: `${index * 0.08 + 0.08}s` }}
+                >
+                  <h3 className={styles.teachServicesCardTitle}>
+                    {service.title}
+                  </h3>
+                  <p className={styles.teachServicesCardText}>
+                    {service.description}
+                  </p>
+                  <Link
+                    className={styles.teachServicesCardLink}
+                    href="#contact"
+                  >
+                    Learn more →
+                  </Link>
                 </article>
               ))}
             </div>
