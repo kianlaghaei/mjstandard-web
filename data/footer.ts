@@ -7,25 +7,25 @@ export type FooterLinkGroup = {
 }
 
 export const footerSummary =
-  "معیارگران جهان، آزمایشگاه تخصصی و مرجع همراهی تولیدکنندگان، واردکنندگان و تیم‌های کنترل کیفیت برای اخذ تاییدیه، ارزیابی انطباق و ارتقای کیفیت محصول است."
+  "معیارگران جهان، آزمایشگاه تخصصی و مرجع همراهی تولیدکنندگان، واردکنندگان و تیم‌های کنترل کیفیت برای اخذ تاییدیه، ارزیابی انطباق، آموزش و ارتقای کیفیت محصول است."
 
 export const footerLinkGroups: FooterLinkGroup[] = [
   {
     title: "دسترسی سریع",
     links: [
-      { href: "#hero", label: "خانه" },
-      { href: "#about", label: "درباره ما" },
-      { href: "#why-us", label: "چرا معیارگران جهان" },
-      { href: "#contact", label: "درخواست مشاوره" },
+      { href: "/", label: "خانه" },
+      { href: "/about", label: "درباره ما" },
+      { href: "/services", label: "خدمات" },
+      { href: "/contact", label: "ارتباط با ما" },
     ],
   },
   {
-    title: "خدمات",
+    title: "صفحات تخصصی",
     links: [
-      { href: "#lab-services", label: "خدمات آزمایشگاهی" },
-      { href: "#training-services", label: "خدمات آموزشی" },
-      { href: "#certifications", label: "گواهی‌ها و مدارک" },
-      { href: "#faq", label: "سوالات متداول" },
+      { href: "/projects", label: "پروژه‌ها" },
+      { href: "/experts", label: "کارشناسان" },
+      { href: "/accreditations", label: "اعتبارنامه‌ها" },
+      { href: "/blog", label: "بلاگ" },
     ],
   },
 ]
@@ -38,6 +38,6 @@ export const footerContact = {
 }
 
 export const footerLegalLinks = [
-  { href: "#contact", label: "حریم خصوصی" },
-  { href: "#contact", label: "شرایط استفاده" },
+  { href: "/contact", label: "حریم خصوصی" },
+  { href: "/contact", label: "شرایط استفاده" },
 ]

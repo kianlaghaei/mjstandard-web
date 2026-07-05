@@ -27,17 +27,17 @@ export default function SiteHeader() {
           <ul className={styles.navList}>
             {primaryNavigation.map((item) => (
               <li key={item.href}>
-                <a className={styles.navLink} href={item.href}>
+                <Link className={styles.navLink} href={item.href}>
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
           <div className={styles.headerActions}>
-            <a className={styles.buttonPrimary} href="#contact">
+            <Link className={styles.buttonPrimary} href="/contact">
               شروع همکاری
-            </a>
+            </Link>
             <button
               aria-expanded={isMobileOpen}
               aria-label="باز کردن منوی موبایل"
@@ -55,7 +55,7 @@ export default function SiteHeader() {
         <div className={`${styles.container} ${styles.mobilePanel}`}>
           <div className={styles.mobileNav}>
             {primaryNavigation.map((item) => (
-              <a
+              <Link
                 className={styles.mobileNavLink}
                 href={item.href}
                 key={item.href}
@@ -63,16 +63,16 @@ export default function SiteHeader() {
               >
                 <span>{item.label}</span>
                 <span aria-hidden="true">←</span>
-              </a>
+              </Link>
             ))}
             <div className={styles.mobileNavActions}>
-              <a
+              <Link
                 className={styles.buttonPrimary}
-                href="#contact"
+                href="/contact"
                 onClick={() => setIsMobileOpen(false)}
               >
                 درخواست مشاوره
-              </a>
+              </Link>
             </div>
           </div>
         </div>

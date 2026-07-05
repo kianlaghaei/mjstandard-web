@@ -33,9 +33,9 @@ export default function SiteFooter() {
               <ul className={styles.footerList}>
                 {group.links.map((link) => (
                   <li key={link.href}>
-                    <a className={styles.footerLink} href={link.href}>
+                    <Link className={styles.footerLink} href={link.href}>
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -71,9 +71,9 @@ export default function SiteFooter() {
           </p>
           <div className={styles.footerLegal}>
             {footerLegalLinks.map((link) => (
-              <a className={styles.footerLegalLink} href={link.href} key={link.label}>
+              <Link className={styles.footerLegalLink} href={link.href} key={link.label}>
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

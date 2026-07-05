@@ -4,11 +4,12 @@ export type NavigationItem = {
 }
 
 export const primaryNavigation: NavigationItem[] = [
-  { href: "#hero", label: "خانه" },
-  { href: "#about", label: "درباره ما" },
-  { href: "#lab-services", label: "خدمات آزمایشگاهی" },
-  { href: "#training-services", label: "خدمات آموزشی" },
-  { href: "#certifications", label: "گواهی‌ها و مدارک" },
-  { href: "#blog", label: "بلاگ" },
-  { href: "#contact", label: "تماس با ما" },
+  { href: "/", label: "خانه" },
+  { href: "/about", label: "درباره ما" },
+  { href: "/services", label: "خدمات" },
+  { href: "/projects", label: "پروژه‌ها" },
+  { href: "/experts", label: "کارشناسان" },
+  { href: "/accreditations", label: "اعتبارنامه‌ها" },
+  { href: "/blog", label: "بلاگ" },
+  { href: "/contact", label: "تماس با ما" },
 ]
