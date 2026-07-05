@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import styles from "@/components/site/pages/site-pages.module.css"
 
 type HeroAction = {
@@ -17,25 +19,40 @@ export default function PageHero({ eyebrow, title, description, actions = [] }: 
   return (
     <section className={styles.hero}>
       <div className={`${styles.container} ${styles.heroInner}`}>
-        <span className={styles.eyebrow}>
-          <span className={styles.eyebrowDot} />
-          {eyebrow}
-        </span>
-        <h1 className={styles.heroTitle}>{title}</h1>
-        <p className={styles.heroText}>{description}</p>
-        {actions.length > 0 ? (
-          <div className={styles.heroActions}>
-            {actions.map((action) => (
-              <a
-                className={action.variant === "ghost" ? styles.buttonGhost : styles.buttonPrimary}
-                href={action.href}
-                key={action.href}
-              >
-                {action.label}
-              </a>
-            ))}
+        <div className={styles.heroShell}>
+          <div className={styles.heroContent}>
+            <span className={styles.eyebrow}>
+              <span className={styles.eyebrowDot} />
+              {eyebrow}
+            </span>
+            <h1 className={styles.heroTitle}>{title}</h1>
+            <p className={styles.heroText}>{description}</p>
+            {actions.length > 0 ? (
+              <div className={styles.heroActions}>
+                {actions.map((action) => (
+                  <Link
+                    className={action.variant === "ghost" ? styles.buttonGhost : styles.buttonPrimary}
+                    href={action.href}
+                    key={action.href}
+                  >
+                    {action.label}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
           </div>
-        ) : null}
+
+          <div className={styles.heroMeta}>
+            <div className={styles.heroMetaCard}>
+              <span className={styles.heroMetaLabel}>رویکرد طراحی</span>
+              <strong className={styles.heroMetaValue}>فنی، مدرن و سازگار با RTL</strong>
+            </div>
+            <div className={styles.heroMetaCard}>
+              <span className={styles.heroMetaLabel}>تمرکز صفحه</span>
+              <strong className={styles.heroMetaValue}>{eyebrow}</strong>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

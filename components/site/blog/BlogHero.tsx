@@ -25,6 +25,7 @@ export default function BlogHero({
         <div className={styles.heroMeta}>
           <span className={styles.metaPill}>{publishedCount} مقاله منتشرشده</span>
           <span className={styles.metaPill}>{categoryCount} دسته‌بندی تخصصی</span>
+          <span className={styles.metaPill}>تمرکز بر استاندارد، آزمون و QC</span>
         </div>
       </div>
     </section>

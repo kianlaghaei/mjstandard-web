@@ -22,15 +22,21 @@ export default function HomeFaq() {
 
         <div className={styles.faqLayout}>
           <aside className={styles.faqAside}>
+            <span className={styles.whyUsValuePill}>پرسش‌های پرتکرار پیش از شروع پروژه</span>
             <h3 className={styles.whyUsLeadTitle}>اگر هنوز نقطه شروع پروژه روشن نیست</h3>
             <p className={styles.faqAsideText}>
               پاسخ این پرسش‌های متداول می‌تواند مسیر اولیه همکاری را شفاف‌تر کند. اگر هنوز
               درباره آزمون، خدمات آموزشی یا دریافت تاییدیه پرسشی دارید، از همین صفحه با ما
               در تماس باشید.
             </p>
-            <a className={styles.buttonGhost} href="#contact">
-              دریافت مشاوره
-            </a>
+            <div className={styles.faqAsideActions}>
+              <a className={styles.buttonPrimary} href="#contact">
+                دریافت مشاوره
+              </a>
+              <a className={styles.buttonGhost} href="/contact">
+                تماس با ما
+              </a>
+            </div>
           </aside>
 
           <div className={styles.faqList}>

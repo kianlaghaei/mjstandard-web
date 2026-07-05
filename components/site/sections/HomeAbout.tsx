@@ -1,5 +1,6 @@
 import Image from "next/image"
 
+import { companyProfile } from "@/data/company"
 import { aboutContent, homepageAssets } from "@/data/homepage"
 
 import styles from "../site-home.module.css"
@@ -43,6 +44,14 @@ export default function HomeAbout() {
                 src={homepageAssets.aboutImage}
               />
             </div>
+
+            <article className={styles.aboutFloatingCard}>
+              <span className={styles.aboutFloatingLabel}>حوزه‌های فعال</span>
+              <strong className={styles.aboutFloatingValue}>{companyProfile.activityDomains.length} محور اجرایی</strong>
+              <p className={styles.aboutFloatingText}>
+                از راه‌اندازی آزمایشگاه و آموزش تا استقرار استاندارد و ارزیابی انطباق.
+              </p>
+            </article>
           </div>
         </div>
       </div>

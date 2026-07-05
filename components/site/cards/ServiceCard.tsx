@@ -9,12 +9,26 @@ type ServiceCardProps = {
   badge: string
 }
 
+const serviceTypeLabels: Record<ServiceSummary["slug"], string> = {
+  laboratory: "خدمات آزمایشگاهی",
+  consulting: "مشاوره فنی",
+  training: "خدمات آموزشی",
+  "standards-development": "تدوین استاندارد",
+}
+
 export default function ServiceCard({ service, badge }: ServiceCardProps) {
   return (
     <article className={`${styles.card} ${styles.serviceCard}`}>
-      <span className={styles.cardBadge}>{badge}</span>
+      <div className={styles.cardHeader}>
+        <span className={styles.cardBadge}>{badge}</span>
+        <span className={styles.cardTag}>{serviceTypeLabels[service.slug]}</span>
+      </div>
       <h3 className={styles.cardTitle}>{service.title}</h3>
       <p className={styles.cardText}>{service.shortDescription}</p>
+      <div className={styles.cardMeta}>
+        <span>مسیر تخصصی</span>
+        <span>خروجی قابل اجرا</span>
+      </div>
       <Link className={styles.cardAction} href={service.href}>
         مشاهده جزئیات
       </Link>

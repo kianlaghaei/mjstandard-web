@@ -23,6 +23,14 @@ export default function BlogPostHeader({ post }: BlogPostHeaderProps) {
         <span>{post.author}</span>
       </div>
 
+      <div className={styles.cardTags}>
+        {post.tags.map((tag) => (
+          <span className={styles.cardTag} key={tag}>
+            {tag}
+          </span>
+        ))}
+      </div>
+
       <h1 className={styles.postTitle}>{post.title}</h1>
       <p className={styles.postExcerpt}>{post.excerpt}</p>
 

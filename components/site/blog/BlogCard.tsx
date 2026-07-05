@@ -27,9 +27,17 @@ export default function BlogCard({ post }: BlogCardProps) {
           <div className={styles.cardMeta}>
             <span className={styles.cardCategory}>{post.category}</span>
             <span>{post.publishedAtDisplay}</span>
+            <span>{post.readingTime}</span>
           </div>
           <h2 className={styles.cardTitle}>{post.title}</h2>
           <p className={styles.cardExcerpt}>{post.excerpt}</p>
+          <div className={styles.cardTags}>
+            {post.tags.slice(0, 2).map((tag) => (
+              <span className={styles.cardTag} key={tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
           <div className={styles.cardFooter}>
             <span className={styles.cardReadingTime}>{post.readingTime}</span>
             <span className={styles.cardAction}>مطالعه مقاله</span>

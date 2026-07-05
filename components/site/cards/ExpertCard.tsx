@@ -18,7 +18,7 @@ export default function ExpertCard({ expert }: ExpertCardProps) {
           </div>
         </div>
       </div>
-      <p className={styles.cardText}>{expert.role}</p>
+      <span className={styles.cardTag}>{expert.role}</span>
       <p className={styles.cardText}>{expert.experienceSummary}</p>
     </article>
   )

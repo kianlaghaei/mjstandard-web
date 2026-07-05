@@ -16,6 +16,18 @@ export default function HomeContact() {
             <p className={styles.contactPanelText}>{contactContent.description}</p>
 
             <div className={styles.contactHighlights}>
+              <a className={styles.contactDetailCard} href={`tel:${contactDetails.phoneHref}`}>
+                <span className={styles.contactDetailLabel}>تلفن هماهنگی</span>
+                <bdi className={styles.phoneNumber} dir="ltr">
+                  {contactDetails.phoneDisplay}
+                </bdi>
+              </a>
+              <a className={styles.contactDetailCard} href={`mailto:${contactDetails.email}`}>
+                <span className={styles.contactDetailLabel}>ایمیل</span>
+                <bdi className={styles.ltrText} dir="ltr">
+                  {contactDetails.email}
+                </bdi>
+              </a>
               {contactContent.highlights.map((item) => (
                 <article className={styles.contactHighlight} key={item.title}>
                   <h3 className={styles.contactHighlightTitle}>{item.title}</h3>
@@ -74,9 +86,18 @@ export default function HomeContact() {
               />
             </div>
 
-            <button className={styles.buttonPrimary} type="submit">
-              {contactContent.form.submitLabel}
-            </button>
+            <div className={styles.contactFormActions}>
+              <button className={styles.buttonPrimary} type="button">
+                {contactContent.form.submitLabel}
+              </button>
+              <a className={styles.buttonGhost} href="/services">
+                مشاهده خدمات
+              </a>
+            </div>
+
+            <p className={styles.contactFormNote}>
+              این فرم در این مرحله نمای رابط کاربری است و برای اتصال نهایی، صرفا به لایه فرانت‌اند متکی می‌ماند.
+            </p>
           </form>
         </div>
       </div>

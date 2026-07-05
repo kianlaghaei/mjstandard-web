@@ -45,14 +45,19 @@ export default function HomeCertifications() {
 
         <div className={styles.swiperScope} dir="rtl">
           <Swiper {...swiperOptions} className={styles.certificationsSlider} dir="rtl">
-            {certifications.map((item) => (
+            {certifications.map((item, index) => (
               <SwiperSlide key={item.title}>
                 <article className={styles.certificateCard}>
+                  <div className={styles.certificateHeader}>
+                    <span className={styles.certificateIndex}>{String(index + 1).padStart(2, "0")}</span>
+                    <span className={styles.certificateMeta}>نمایش مستندات و ارجاعات</span>
+                  </div>
                   <div className={styles.certificatePlaceholder}>
                     نمونه گواهی، تاییدیه یا تصویر مدرک در این بخش نمایش داده می‌شود
                   </div>
                   <h3 className={styles.certificateTitle}>{item.title}</h3>
                   <p className={styles.certificateText}>{item.subtitle}</p>
+                  <div className={styles.certificateFooter}>قابل جایگزینی با فایل واقعی پس از تایید انتشار</div>
                 </article>
               </SwiperSlide>
             ))}

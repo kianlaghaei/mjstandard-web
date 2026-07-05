@@ -8,7 +8,7 @@ export default function HomeHero() {
   return (
     <section className={styles.hero} id="hero">
       <div className={`${styles.container} ${styles.heroInner}`}>
-        <div>
+        <div className={styles.heroContent}>
           <span className={styles.eyebrow}>
             <span className={styles.eyebrowDot} />
             {heroContent.eyebrow}
@@ -33,16 +33,33 @@ export default function HomeHero() {
               </li>
             ))}
           </ul>
+
+          <div className={styles.heroTrustRow}>
+            {stats.slice(0, 2).map((stat) => (
+              <article className={styles.heroTrustCard} key={stat.label}>
+                <strong className={styles.heroTrustValue}>
+                  {stat.suffix === "%" ? `${stat.value}%` : `${stat.suffix}${stat.value}`}
+                </strong>
+                <span className={styles.heroTrustLabel}>{stat.label}</span>
+              </article>
+            ))}
+          </div>
         </div>
 
         <div className={styles.heroVisual}>
           <article className={styles.heroCard}>
-            <Image
-              src={homepageAssets.heroAccent}
-              alt=""
-              aria-hidden="true"
-              className={styles.heroBadgeImage}
-            />
+            <div className={styles.heroCardHeader}>
+              <Image
+                src={homepageAssets.heroAccent}
+                alt=""
+                aria-hidden="true"
+                className={styles.heroBadgeImage}
+              />
+              <div>
+                <span className={styles.heroCardKicker}>مسیر همکاری کنترل‌شده</span>
+                <span className={styles.heroCardCaption}>از تحلیل اولیه تا گزارش نهایی قابل استناد</span>
+              </div>
+            </div>
             <h2 className={styles.heroCardTitle}>همراهی فنی از ارزیابی اولیه تا دریافت گزارش نهایی</h2>
             <p className={styles.heroCardText}>
               از بررسی استانداردهای هدف و برنامه‌ریزی آزمون تا تحلیل نتایج و تحویل گزارش،
@@ -60,6 +77,14 @@ export default function HomeHero() {
               ))}
             </div>
           </article>
+
+          <div className={styles.heroSignalCard}>
+            <span className={styles.heroSignalLabel}>تمرکز فعلی</span>
+            <strong className={styles.heroSignalValue}>استاندارد، آزمون، انطباق</strong>
+            <p className={styles.heroSignalText}>
+              برای پروژه‌های روشنایی، ایمنی الکتریکی، تجهیزات مصرفی و توسعه توان آزمایشگاهی.
+            </p>
+          </div>
 
           <div className={styles.heroBadge}>
             <Image

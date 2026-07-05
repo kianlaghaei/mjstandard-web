@@ -12,13 +12,6 @@ import "/public/assets/css/main.css"
 import "@/node_modules/react-modal-video/css/modal-video.css"
 
 import type { Metadata } from "next"
-import { Vazirmatn } from "next/font/google"
-
-const vazirmatn = Vazirmatn({
-    subsets: ["arabic"],
-    weight: ["400", "500", "700", "800"],
-    variable: "--font-vazirmatn",
-})
 
 export const metadata: Metadata = {
     title: "معیارگران جهان",
@@ -32,7 +25,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fa">
-            <body className={vazirmatn.variable}>{children}</body>
+            <body style={{ ["--font-vazirmatn" as string]: '"Segoe UI", Tahoma, sans-serif' }}>
+                {children}
+            </body>
         </html>
     )
 }

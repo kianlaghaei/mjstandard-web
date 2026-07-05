@@ -8,8 +8,9 @@ type AccreditationCardProps = {
 
 export default function AccreditationCard({ item }: AccreditationCardProps) {
   return (
-    <article className={styles.card}>
-      <div className={styles.cardMeta}>
+    <article className={`${styles.card} ${styles.accreditationCard}`}>
+      <div className={styles.cardHeader}>
+        <span className={styles.cardTag}>مدرک / ارجاع</span>
         {item.reference ? (
           <span className={styles.statusPill}>
             <bdi className={styles.ltrText} dir="ltr">

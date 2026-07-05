@@ -20,6 +20,7 @@ export default function HomeWhyUs() {
 
         <div className={styles.whyUsGrid}>
           <article className={styles.whyUsLeadCard}>
+            <span className={styles.whyUsValuePill}>ارزش‌های اجرایی و قابل اتکا</span>
             <h3 className={styles.whyUsLeadTitle}>همراهی فنی با نگاه اجرایی</h3>
             <p className={styles.whyUsLeadText}>
               ما فقط یک خروجی آزمون ارائه نمی‌کنیم. هدف، ساختن مسیری قابل اجرا برای تصمیم‌گیری
@@ -38,8 +39,9 @@ export default function HomeWhyUs() {
           </article>
 
           <div className={styles.whyUsCards}>
-            {whyUsItems.map((item) => (
+            {whyUsItems.map((item, index) => (
               <article className={styles.whyUsCard} key={item.title}>
+                <span className={styles.whyUsCardIcon}>{String(index + 1).padStart(2, "0")}</span>
                 <h3 className={styles.whyUsCardTitle}>{item.title}</h3>
                 <p className={styles.whyUsCardText}>{item.description}</p>
               </article>
