@@ -1,5 +1,7 @@
 import { contactContent, contactDetails } from "@/data/homepage"
 
+import Reveal from "@/components/site/shared/Reveal"
+
 import styles from "../site-home.module.css"
 
 export default function HomeContact() {
@@ -7,7 +9,7 @@ export default function HomeContact() {
     <section className={styles.section} id="contact">
       <div className={styles.container}>
         <div className={styles.contactLayout}>
-          <div className={styles.contactPanel}>
+          <Reveal className={styles.contactPanel} effect="fade-up">
             <span className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
               شروع همکاری
@@ -16,28 +18,34 @@ export default function HomeContact() {
             <p className={styles.contactPanelText}>{contactContent.description}</p>
 
             <div className={styles.contactHighlights}>
-              <a className={styles.contactDetailCard} href={`tel:${contactDetails.phoneHref}`}>
+              <Reveal as="a" className={styles.contactDetailCard} delay={80} effect="fade-up" href={`tel:${contactDetails.phoneHref}`}>
                 <span className={styles.contactDetailLabel}>تلفن هماهنگی</span>
                 <bdi className={styles.phoneNumber} dir="ltr">
                   {contactDetails.phoneDisplay}
                 </bdi>
-              </a>
-              <a className={styles.contactDetailCard} href={`mailto:${contactDetails.email}`}>
+              </Reveal>
+              <Reveal as="a" className={styles.contactDetailCard} delay={150} effect="fade-up" href={`mailto:${contactDetails.email}`}>
                 <span className={styles.contactDetailLabel}>ایمیل</span>
                 <bdi className={styles.ltrText} dir="ltr">
                   {contactDetails.email}
                 </bdi>
-              </a>
-              {contactContent.highlights.map((item) => (
-                <article className={styles.contactHighlight} key={item.title}>
+              </Reveal>
+              {contactContent.highlights.map((item, index) => (
+                <Reveal
+                  as="article"
+                  className={styles.contactHighlight}
+                  delay={220 + index * 70}
+                  effect="fade-up"
+                  key={item.title}
+                >
                   <h3 className={styles.contactHighlightTitle}>{item.title}</h3>
                   <p className={styles.contactHighlightText}>{item.description}</p>
-                </article>
+                </Reveal>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <form className={styles.contactForm}>
+          <Reveal as="form" className={styles.contactForm} delay={140} effect="scale-in">
             <div className={styles.formGrid}>
               <div className={styles.field}>
                 <label htmlFor="contact-name">{contactContent.form.nameLabel}</label>
@@ -97,7 +105,7 @@ export default function HomeContact() {
             <p className={styles.contactFormNote}>
               این فرم در این مرحله نمای رابط کاربری است و برای اتصال نهایی، صرفا به لایه فرانت‌اند متکی می‌ماند.
             </p>
-          </form>
+          </Reveal>
         </div>
       </div>
     </section>

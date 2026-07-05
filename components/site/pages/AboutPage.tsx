@@ -3,6 +3,7 @@ import { companyProfile } from "@/data/company"
 import styles from "./site-pages.module.css"
 import ContactCta from "../shared/ContactCta"
 import PageHero from "../shared/PageHero"
+import Reveal from "../shared/Reveal"
 import SectionIntro from "../shared/SectionIntro"
 import SitePageLayout from "../shared/SitePageLayout"
 
@@ -38,7 +39,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className={styles.card}>
+            <Reveal className={styles.card} delay={120} effect="scale-in">
               <h2 className={styles.cardTitle}>حوزه‌های فعالیت</h2>
               <ul className={styles.list}>
                 {companyProfile.activityDomains.map((item) => (
@@ -48,7 +49,7 @@ export default function AboutPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -61,14 +62,20 @@ export default function AboutPage() {
             title="از شروع فعالیت خصوصی تا توسعه خدمات تخصصی"
           />
           <div className={styles.timeline}>
-            {companyProfile.milestones.map((item) => (
-              <article className={styles.timelineItem} key={item.year}>
+            {companyProfile.milestones.map((item, index) => (
+              <Reveal
+                as="article"
+                className={styles.timelineItem}
+                delay={index * 90}
+                effect="slide-inline-start"
+                key={item.year}
+              >
                 <div className={styles.timelineYear}>{item.year}</div>
                 <div>
                   <h3 className={styles.cardTitle}>{item.title}</h3>
                   <p className={styles.cardText}>{item.description}</p>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -77,14 +84,14 @@ export default function AboutPage() {
       <section className={styles.section}>
         <div className={styles.container}>
           <div className={styles.gridTwo}>
-            <article className={styles.card}>
+            <Reveal as="article" className={styles.card} effect="fade-up">
               <h2 className={styles.sectionTitle}>ماموریت</h2>
               <p className={styles.sectionText}>{companyProfile.mission}</p>
-            </article>
-            <article className={styles.card}>
+            </Reveal>
+            <Reveal as="article" className={styles.card} delay={100} effect="fade-up">
               <h2 className={styles.sectionTitle}>چرایی شکل‌گیری شرکت</h2>
               <p className={styles.sectionText}>{companyProfile.whyItExists}</p>
-            </article>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -97,14 +104,14 @@ export default function AboutPage() {
             title="تمرکز بر روشنایی، ایمنی الکتریکی و تجهیزات تخصصی"
           />
           <div className={styles.gridThree}>
-            {companyProfile.industryDomains.map((domain) => (
-              <article className={styles.card} key={domain}>
+            {companyProfile.industryDomains.map((domain, index) => (
+              <Reveal as="article" className={styles.card} delay={index * 80} effect="fade-up" key={domain}>
                 <h3 className={styles.cardTitle}>{domain}</h3>
                 <p className={styles.cardText}>
                   ارائه خدمات فنی، آزمایشگاهی، ارزیابی انطباق و مشاوره استاندارد در این
                   حوزه با رویکرد اجرایی و صنعتی.
                 </p>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>

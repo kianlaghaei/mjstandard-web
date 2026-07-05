@@ -1,12 +1,14 @@
 import { trainingServices } from "@/data/homepage"
 
+import Reveal from "@/components/site/shared/Reveal"
+
 import styles from "../site-home.module.css"
 
 export default function HomeTrainingServices() {
   return (
     <section className={`${styles.section} ${styles.trainingSection}`} id="training-services">
       <div className={styles.container}>
-        <div className={styles.servicePanel}>
+        <Reveal className={styles.servicePanel} effect="fade-up">
           <div className={styles.sectionHeader}>
             <span className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
@@ -28,11 +30,17 @@ export default function HomeTrainingServices() {
               طراحی دوره اختصاصی
             </a>
           </div>
-        </div>
+        </Reveal>
 
         <div className={styles.serviceGrid}>
           {trainingServices.map((service, index) => (
-            <article className={styles.serviceCard} key={service.title}>
+            <Reveal
+              as="article"
+              className={styles.serviceCard}
+              delay={index * 90}
+              effect="fade-up"
+              key={service.title}
+            >
               <div className={styles.serviceCardTop}>
                 <div className={styles.serviceIcon}>آ{index + 1}</div>
                 <span className={styles.serviceBadge}>
@@ -48,7 +56,7 @@ export default function HomeTrainingServices() {
               <a className={styles.serviceLink} href="#contact">
                 اطلاعات بیشتر
               </a>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

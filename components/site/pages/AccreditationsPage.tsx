@@ -6,6 +6,7 @@ import {
 import AccreditationCard from "../cards/AccreditationCard"
 import ContactCta from "../shared/ContactCta"
 import PageHero from "../shared/PageHero"
+import Reveal from "../shared/Reveal"
 import SectionIntro from "../shared/SectionIntro"
 import SitePageLayout from "../shared/SitePageLayout"
 import styles from "./site-pages.module.css"
@@ -27,9 +28,11 @@ export default function AccreditationsPage() {
             eyebrow="اعتبارهای قابل استناد"
             title="کارت‌های اعتبارنامه و ارجاع"
           />
-          <div className={styles.gridThree}>
-            {accreditationItems.map((item) => (
-              <AccreditationCard item={item} key={item.id} />
+          <div className={styles.accreditationGrid}>
+            {accreditationItems.map((item, index) => (
+              <Reveal delay={index * 90} effect="fade-up" key={item.id}>
+                <AccreditationCard item={item} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -43,10 +46,10 @@ export default function AccreditationsPage() {
             title="جایگاه نمایش گواهی‌ها و مستندات"
           />
           <div className={styles.galleryGrid}>
-            {accreditationGalleryPlaceholders.map((item) => (
-              <div className={styles.galleryPlaceholder} key={item}>
+            {accreditationGalleryPlaceholders.map((item, index) => (
+              <Reveal className={styles.galleryPlaceholder} delay={index * 80} effect="scale-in" key={item}>
                 {item}
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

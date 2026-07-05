@@ -1,6 +1,7 @@
 import { companyProfile } from "@/data/company"
 
 import PageHero from "../shared/PageHero"
+import Reveal from "../shared/Reveal"
 import SectionIntro from "../shared/SectionIntro"
 import SitePageLayout from "../shared/SitePageLayout"
 import styles from "./site-pages.module.css"
@@ -20,13 +21,13 @@ export default function ContactPage() {
 
       <section className={styles.section}>
         <div className={`${styles.container} ${styles.contactGrid}`}>
-          <div className={styles.contactPanel}>
+          <Reveal className={styles.contactPanel} effect="fade-up">
             <SectionIntro
               description="اطلاعات تماس در این بخش به‌صورت خوانا و سازگار با RTL/LTR ارائه شده است."
               title="اطلاعات تماس"
             />
             <div className={styles.contactList}>
-              <div className={styles.contactRow}>
+              <Reveal className={styles.contactRow} delay={80} effect="fade-up">
                 <span className={styles.contactLabel}>آدرس</span>
                 <p className={styles.contactValue}>
                   {contact.addressLines.map((line) => (
@@ -36,41 +37,41 @@ export default function ContactPage() {
                     </span>
                   ))}
                 </p>
-              </div>
-              <div className={styles.contactRow}>
+              </Reveal>
+              <Reveal className={styles.contactRow} delay={140} effect="fade-up">
                 <span className={styles.contactLabel}>تلفن</span>
                 <a className={`${styles.contactValue} ${styles.phoneNumber}`} href={`tel:${contact.phoneHref}`}>
                   <bdi dir="ltr">{contact.phoneDisplay}</bdi>
                 </a>
-              </div>
-              <div className={styles.contactRow}>
+              </Reveal>
+              <Reveal className={styles.contactRow} delay={200} effect="fade-up">
                 <span className={styles.contactLabel}>تلگرام</span>
                 <a className={`${styles.contactValue} ${styles.ltrText}`} href={contact.telegramUrl}>
                   <bdi dir="ltr">{contact.telegramDisplay}</bdi>
                 </a>
-              </div>
-              <div className={styles.contactRow}>
+              </Reveal>
+              <Reveal className={styles.contactRow} delay={260} effect="fade-up">
                 <span className={styles.contactLabel}>واتساپ</span>
                 <a className={`${styles.contactValue} ${styles.ltrText}`} href={contact.whatsappUrl}>
                   <bdi dir="ltr">{contact.whatsappDisplay}</bdi>
                 </a>
-              </div>
-              <div className={styles.contactRow}>
+              </Reveal>
+              <Reveal className={styles.contactRow} delay={320} effect="fade-up">
                 <span className={styles.contactLabel}>ایمیل</span>
                 <a className={`${styles.contactValue} ${styles.ltrText}`} href={`mailto:${contact.email}`}>
                   <bdi dir="ltr">{contact.email}</bdi>
                 </a>
-              </div>
-              <div className={styles.contactRow}>
+              </Reveal>
+              <Reveal className={styles.contactRow} delay={380} effect="fade-up">
                 <span className={styles.contactLabel}>وب‌سایت</span>
                 <a className={`${styles.contactValue} ${styles.ltrText}`} href={contact.websiteUrl}>
                   <bdi dir="ltr">{contact.websiteDisplay}</bdi>
                 </a>
-              </div>
+              </Reveal>
             </div>
-          </div>
+          </Reveal>
 
-          <div className={styles.formCard}>
+          <Reveal className={styles.formCard} delay={140} effect="scale-in">
             <SectionIntro
               description="این فرم فقط نمای رابط کاربری است و در این مرحله اتصال سمت‌سرور یا ثبت نهایی ندارد."
               title="فرم تماس"
@@ -120,7 +121,7 @@ export default function ContactPage() {
                 ارسال درخواست
               </button>
             </form>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -128,7 +129,7 @@ export default function ContactPage() {
         <div className={styles.container}>
           <SectionIntro eyebrow="موقعیت" title="پنل آدرس و دسترسی" />
           <div className={styles.twoColumn}>
-            <div className={styles.card}>
+            <Reveal className={styles.card} effect="slide-inline-start">
               <h3 className={styles.cardTitle}>محل استقرار دفتر</h3>
               <p className={styles.cardText}>{contact.addressLines.join("، ")}</p>
               <p className={styles.note}>
@@ -142,9 +143,9 @@ export default function ContactPage() {
               >
                 باز کردن در Google Maps
               </a>
-            </div>
+            </Reveal>
 
-            <div className={styles.mapCard}>
+            <Reveal className={styles.mapCard} delay={120} effect="scale-in">
               <iframe
                 className={styles.mapFrame}
                 loading="lazy"
@@ -152,7 +153,7 @@ export default function ContactPage() {
                 src={`https://www.google.com/maps?q=${mapQuery}&z=15&output=embed`}
                 title="موقعیت معیارگران جهان در Google Maps"
               />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

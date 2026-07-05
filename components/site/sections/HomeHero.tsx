@@ -4,6 +4,8 @@ import Link from "next/link"
 import { heroContent, homepageAssets, stats } from "@/data/homepage"
 import type { stats as StatsType } from "@/data/homepage"
 
+import Reveal from "@/components/site/shared/Reveal"
+
 import styles from "../site-home.module.css"
 
 type Stat = (typeof StatsType)[number]
@@ -62,7 +64,7 @@ export default function HomeHero() {
         </div>
 
         <div className={styles.heroVisual}>
-          <article className={styles.heroCard}>
+          <Reveal as="article" className={styles.heroCard} delay={420} effect="blur-in">
             <div className={styles.heroCardHeader}>
               <Image
                 src={homepageAssets.heroAccent}
@@ -92,17 +94,17 @@ export default function HomeHero() {
                 </div>
               ))}
             </div>
-          </article>
+          </Reveal>
 
-          <div className={styles.heroSignalCard}>
+          <Reveal className={styles.heroSignalCard} delay={500} effect="scale-in">
             <span className={styles.heroSignalLabel}>تمرکز فعلی</span>
             <strong className={styles.heroSignalValue}>استاندارد، آزمون، انطباق</strong>
             <p className={styles.heroSignalText}>
               برای پروژه‌های روشنایی، ایمنی الکتریکی، تجهیزات مصرفی و توسعه توان آزمایشگاهی.
             </p>
-          </div>
+          </Reveal>
 
-          <div className={styles.heroBadge}>
+          <Reveal className={styles.heroBadge} delay={580} effect="scale-in">
             <Image
               src={homepageAssets.trainingAccent}
               alt=""
@@ -115,7 +117,7 @@ export default function HomeHero() {
                 از استقرار تیم QC تا آماده‌سازی مسیر اخذ تاییدیه در کنار شما هستیم
               </span>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

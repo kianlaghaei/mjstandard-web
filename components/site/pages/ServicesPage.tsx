@@ -3,6 +3,7 @@ import { primaryServices } from "@/data/services"
 import ServiceCard from "../cards/ServiceCard"
 import ContactCta from "../shared/ContactCta"
 import PageHero from "../shared/PageHero"
+import Reveal from "../shared/Reveal"
 import SectionIntro from "../shared/SectionIntro"
 import SitePageLayout from "../shared/SitePageLayout"
 import styles from "./site-pages.module.css"
@@ -26,11 +27,12 @@ export default function ServicesPage() {
           />
           <div className={styles.gridTwo}>
             {primaryServices.map((service, index) => (
-              <ServiceCard
-                badge={String(index + 1).padStart(2, "0")}
-                key={service.slug}
-                service={service}
-              />
+              <Reveal delay={index * 90} effect="fade-up" key={service.slug}>
+                <ServiceCard
+                  badge={String(index + 1).padStart(2, "0")}
+                  service={service}
+                />
+              </Reveal>
             ))}
           </div>
         </div>

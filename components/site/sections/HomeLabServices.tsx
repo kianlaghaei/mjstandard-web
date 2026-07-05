@@ -1,5 +1,7 @@
 import { labServices } from "@/data/homepage"
 
+import Reveal from "@/components/site/shared/Reveal"
+
 import styles from "../site-home.module.css"
 
 /** شمارهٔ کارت با ارقام فارسی و طول ثابت دو رقم */
@@ -11,7 +13,7 @@ export default function HomeLabServices() {
   return (
     <section className={styles.section} id="lab-services">
       <div className={styles.container}>
-        <div className={styles.servicePanel}>
+        <Reveal className={styles.servicePanel} effect="fade-up">
           <div className={styles.sectionHeader}>
             <span className={styles.eyebrow}>
               <span className={styles.eyebrowDot} aria-hidden="true" />
@@ -33,11 +35,17 @@ export default function HomeLabServices() {
               هماهنگی پروژه
             </a>
           </div>
-        </div>
+        </Reveal>
 
         <div className={styles.serviceGrid}>
           {labServices.map((service, index) => (
-            <article className={styles.serviceCard} key={service.title}>
+            <Reveal
+              as="article"
+              className={styles.serviceCard}
+              delay={index * 90}
+              effect="fade-up"
+              key={service.title}
+            >
               <div className={styles.serviceCardTop}>
                 <div className={styles.serviceIcon} aria-hidden="true">
                   {formatIndex(index)}
@@ -68,7 +76,7 @@ export default function HomeLabServices() {
                 اطلاعات بیشتر
                 <span aria-hidden="true"> ←</span>
               </a>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -3,6 +3,8 @@ import Link from "next/link"
 
 import { getFeaturedPosts, getLatestPosts } from "@/data/blog"
 
+import Reveal from "@/components/site/shared/Reveal"
+
 import styles from "../site-home.module.css"
 
 const previewPosts = (() => {
@@ -16,7 +18,7 @@ export default function HomeBlog() {
   return (
     <section className={styles.section} id="blog">
       <div className={styles.container}>
-        <div className={styles.servicePanel}>
+        <Reveal className={styles.servicePanel} effect="fade-up">
           <div className={styles.sectionHeader}>
             <span className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
@@ -38,11 +40,11 @@ export default function HomeBlog() {
               آرشیو مقالات
             </Link>
           </div>
-        </div>
+        </Reveal>
 
         <div className={styles.blogFeatureLayout}>
           {featuredPost ? (
-            <article className={styles.blogFeatureCard}>
+            <Reveal as="article" className={styles.blogFeatureCard} effect="scale-in">
               <Link className={styles.blogCardLink} href={`/blog/${featuredPost.slug}`}>
                 <div className={styles.blogImageWrap}>
                   <Image
@@ -73,12 +75,18 @@ export default function HomeBlog() {
                   <span className={styles.blogReadMore}>مطالعه مقاله</span>
                 </div>
               </Link>
-            </article>
+            </Reveal>
           ) : null}
 
           <div className={styles.blogSideList}>
-            {secondaryPosts.map((post) => (
-              <article className={styles.blogCompactCard} key={post.slug}>
+            {secondaryPosts.map((post, index) => (
+              <Reveal
+                as="article"
+                className={styles.blogCompactCard}
+                delay={index * 90}
+                effect="fade-up"
+                key={post.slug}
+              >
                 <Link className={styles.blogCompactLink} href={`/blog/${post.slug}`}>
                   <div className={styles.blogCompactImageWrap}>
                     <Image
@@ -99,7 +107,7 @@ export default function HomeBlog() {
                     <span className={styles.blogReadMore}>مطالعه بیشتر</span>
                   </div>
                 </Link>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>

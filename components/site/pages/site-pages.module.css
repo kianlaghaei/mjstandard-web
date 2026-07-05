@@ -19,13 +19,12 @@
 .main {
   padding-block-start: 18px;
   padding-block-end: 32px;
+  animation: pageEnter 0.48s ease both;
 }
 
 .section {
   padding-block: clamp(64px, 6vw, 92px);
   scroll-margin-top: calc(var(--header-offset) + 24px);
-  opacity: 0;
-  animation: fadeUp 0.72s ease forwards;
 }
 
 .sectionAlt {
@@ -194,8 +193,6 @@
   display: grid;
   gap: 12px;
   margin-block-end: 30px;
-  opacity: 0;
-  animation: fadeUp 0.66s ease 0.08s forwards;
 }
 
 .sectionHeaderTop {
@@ -246,6 +243,15 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.accreditationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 26px);
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
 .card,
 .tableWrap,
 .contactPanel,
@@ -275,6 +281,31 @@
   gap: 12px;
 }
 
+.accreditationCard {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  background: var(--glass-panel);
+  color: var(--text-main);
+  border-color: var(--border-soft);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  position: relative;
+}
+
+.accreditationCard::before {
+  content: "";
+  position: absolute;
+  inset: -120% auto auto -28%;
+  inline-size: 42%;
+  block-size: 240%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent-cyan) 18%, transparent), transparent);
+  opacity: 0;
+  transform: rotate(18deg);
+  animation: cardShine 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
 .serviceCard:hover,
 .projectCard:hover,
 .expertCard:hover,
@@ -288,31 +319,11 @@
 .gridTwo > *,
 .gridThree > *,
 .gridFour > *,
+.accreditationGrid > *,
 .galleryGrid > *,
 .timeline > * {
-  opacity: 0;
-  animation: fadeUp 0.62s ease forwards;
+  min-inline-size: 0;
 }
-
-.gridTwo > :nth-child(1),
-.gridThree > :nth-child(1),
-.gridFour > :nth-child(1),
-.galleryGrid > :nth-child(1),
-.timeline > :nth-child(1) { animation-delay: 0.08s; }
-
-.gridTwo > :nth-child(2),
-.gridThree > :nth-child(2),
-.gridFour > :nth-child(2),
-.galleryGrid > :nth-child(2),
-.timeline > :nth-child(2) { animation-delay: 0.14s; }
-
-.gridThree > :nth-child(3),
-.gridFour > :nth-child(3),
-.galleryGrid > :nth-child(3),
-.timeline > :nth-child(3) { animation-delay: 0.2s; }
-
-.gridFour > :nth-child(4),
-.timeline > :nth-child(4) { animation-delay: 0.26s; }
 
 .cardHeader {
   display: flex;
@@ -533,6 +544,8 @@
   aspect-ratio: 4 / 3;
   display: grid;
   place-items: center;
+  min-block-size: clamp(200px, 24vw, 240px);
+  overflow: hidden;
   padding: 16px;
   border-radius: 26px;
   text-align: center;
@@ -556,8 +569,6 @@
   background: var(--gradient-surface);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
   box-shadow: var(--shadow-card);
-  opacity: 0;
-  animation: fadeInScale 0.66s ease 0.08s forwards;
 }
 
 .contactPanel .sectionTitle,
@@ -602,8 +613,6 @@
   background: var(--gradient-surface-soft);
   border: 1px solid color-mix(in srgb, var(--accent-blue) 18%, transparent);
   box-shadow: 0 28px 58px color-mix(in srgb, var(--accent-blue) 14%, transparent);
-  opacity: 0;
-  animation: fadeInScale 0.66s ease 0.16s forwards;
 }
 
 .form {
@@ -723,6 +732,7 @@
 .buttonPrimary:hover {
   background-position: 100% 0;
   box-shadow: 0 22px 44px color-mix(in srgb, var(--accent-blue) 32%, transparent);
+  animation: ctaPulse 1.35s ease-in-out infinite;
 }
 
 .buttonGhost:hover {
@@ -739,8 +749,6 @@
   background: var(--gradient-surface);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
   box-shadow: var(--shadow-card);
-  opacity: 0;
-  animation: fadeInScale 0.72s ease 0.12s forwards;
 }
 
 .ctaAside {
@@ -831,6 +839,70 @@
   }
 }
 
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    box-shadow: 0 18px 36px color-mix(in srgb, var(--accent-blue) 24%, transparent);
+  }
+
+  50% {
+    box-shadow: 0 22px 46px color-mix(in srgb, var(--accent-cyan) 26%, transparent);
+  }
+}
+
+@keyframes cardShine {
+  0%,
+  68%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-12%, 0, 0) rotate(18deg);
+  }
+
+  14%,
+  24% {
+    opacity: 1;
+    transform: translate3d(180%, 0, 0) rotate(18deg);
+  }
+}
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    translate: 0 34px;
+    scale: 0.985;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .buttonPrimary,
   .buttonGhost,
@@ -844,19 +916,29 @@
   .hero::after,
   .heroContent > *,
   .heroMeta,
+  .main,
   .section,
+  .section > .container,
   .sectionHeader,
   .gridTwo > *,
   .gridThree > *,
   .gridFour > *,
+  .accreditationGrid > *,
   .galleryGrid > *,
   .timeline > *,
+  .contactGrid > *,
   .contactPanel,
   .formCard,
   .ctaPanel {
     animation: none;
     opacity: 1;
     transform: none;
+    translate: none;
+    scale: none;
+  }
+
+  .accreditationCard::before {
+    animation: none;
   }
 
   .buttonPrimary:hover,
@@ -877,6 +959,12 @@
 
   .gridThree,
   .gridFour {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1181px) {
+  .accreditationGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -926,5 +1014,11 @@
 
   .table {
     min-width: 620px;
+  }
+}
+
+@media (max-width: 680px) {
+  .accreditationGrid {
+    grid-template-columns: 1fr;
   }
 }

@@ -2,6 +2,7 @@ import type { ServiceDetail } from "@/data/services"
 
 import ContactCta from "../shared/ContactCta"
 import PageHero from "../shared/PageHero"
+import Reveal from "../shared/Reveal"
 import SectionIntro from "../shared/SectionIntro"
 import SitePageLayout from "../shared/SitePageLayout"
 import styles from "./site-pages.module.css"
@@ -47,11 +48,11 @@ export default function ServiceDetailPage({ service }: ServiceDetailPageProps) {
           />
           {service.bullets?.length ? (
             <ul className={styles.list}>
-              {service.bullets.map((item) => (
-                <li className={styles.listItem} key={item}>
+              {service.bullets.map((item, index) => (
+                <Reveal as="li" className={styles.listItem} delay={index * 70} effect="fade-up" key={item}>
                   <span className={styles.listMarker}>✓</span>
                   <span className={styles.cardText}>{item}</span>
-                </li>
+                </Reveal>
               ))}
             </ul>
           ) : null}
@@ -66,10 +67,10 @@ export default function ServiceDetailPage({ service }: ServiceDetailPageProps) {
               title={service.domainsTitle || "دامنه خدمات"}
             />
             <div className={styles.gridThree}>
-              {service.domains.map((item) => (
-                <article className={styles.card} key={item}>
+              {service.domains.map((item, index) => (
+                <Reveal as="article" className={styles.card} delay={index * 80} effect="fade-up" key={item}>
                   <h3 className={styles.cardTitle}>{renderMaybeLtr(item)}</h3>
-                </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -82,10 +83,10 @@ export default function ServiceDetailPage({ service }: ServiceDetailPageProps) {
             <SectionIntro eyebrow="فرایند" title={service.processTitle || "فرایند همکاری"} />
             <div className={styles.gridFour}>
               {service.process.map((item, index) => (
-                <article className={styles.card} key={item}>
+                <Reveal as="article" className={styles.card} delay={index * 80} effect="scale-in" key={item}>
                   <span className={styles.cardBadge}>{index + 1}</span>
                   <p className={styles.cardText}>{item}</p>
-                </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -97,10 +98,10 @@ export default function ServiceDetailPage({ service }: ServiceDetailPageProps) {
           <div className={styles.container}>
             <SectionIntro eyebrow="مخاطبان" title={service.audiencesTitle || "مخاطبان اصلی"} />
             <div className={styles.gridThree}>
-              {service.audiences.map((item) => (
-                <article className={styles.card} key={item}>
+              {service.audiences.map((item, index) => (
+                <Reveal as="article" className={styles.card} delay={index * 80} effect="fade-up" key={item}>
                   <h3 className={styles.cardTitle}>{renderMaybeLtr(item)}</h3>
-                </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -112,10 +113,10 @@ export default function ServiceDetailPage({ service }: ServiceDetailPageProps) {
           <div className={styles.container}>
             <SectionIntro eyebrow="محورهای آموزشی" title={service.topicsTitle || "سرفصل‌ها"} />
             <div className={styles.gridTwo}>
-              {service.topics.map((item) => (
-                <article className={styles.card} key={item}>
+              {service.topics.map((item, index) => (
+                <Reveal as="article" className={styles.card} delay={index * 80} effect="fade-up" key={item}>
                   <h3 className={styles.cardTitle}>{renderMaybeLtr(item)}</h3>
-                </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -130,10 +131,10 @@ export default function ServiceDetailPage({ service }: ServiceDetailPageProps) {
               title={service.committeesTitle || "کمیته‌ها و کارگروه‌ها"}
             />
             <div className={styles.gridThree}>
-              {service.committees.map((item) => (
-                <article className={styles.card} key={item}>
+              {service.committees.map((item, index) => (
+                <Reveal as="article" className={styles.card} delay={index * 80} effect="fade-up" key={item}>
                   <p className={styles.cardText}>{item}</p>
-                </article>
+                </Reveal>
               ))}
             </div>
           </div>

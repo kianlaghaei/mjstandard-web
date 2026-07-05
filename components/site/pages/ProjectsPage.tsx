@@ -3,6 +3,7 @@ import { projectItems } from "@/data/projects"
 import ProjectCard from "../cards/ProjectCard"
 import ContactCta from "../shared/ContactCta"
 import PageHero from "../shared/PageHero"
+import Reveal from "../shared/Reveal"
 import SectionIntro from "../shared/SectionIntro"
 import SitePageLayout from "../shared/SitePageLayout"
 import styles from "./site-pages.module.css"
@@ -25,7 +26,7 @@ export default function ProjectsPage() {
             title="پروژه‌ها و همکاری‌های شاخص"
           />
 
-          <div className={styles.tableWrap}>
+          <Reveal className={styles.tableWrap} effect="fade-up">
             <table className={styles.table}>
               <thead>
                 <tr>
@@ -48,11 +49,13 @@ export default function ProjectsPage() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </Reveal>
 
           <div className={`${styles.gridTwo} ${styles.topSpacingMd}`}>
-            {projectItems.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            {projectItems.map((project, index) => (
+              <Reveal delay={index * 90} effect="fade-up" key={project.id}>
+                <ProjectCard project={project} />
+              </Reveal>
             ))}
           </div>
         </div>

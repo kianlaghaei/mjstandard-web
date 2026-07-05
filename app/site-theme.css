@@ -133,6 +133,136 @@ body {
   transition: background-color 0.35s ease, color 0.3s ease, background 0.4s ease;
 }
 
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in srgb, var(--accent-cyan) 18%, transparent), transparent 28%),
+    radial-gradient(circle at 72% 22%, color-mix(in srgb, var(--accent-blue) 16%, transparent), transparent 24%),
+    color-mix(in srgb, var(--site-bg) 94%, black);
+}
+
+.site-loader {
+  inline-size: min(100%, 360px);
+}
+
+.site-loader-card {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  background: var(--glass-panel-strong);
+  box-shadow: var(--glass-stroke), var(--shadow-glass), var(--glow-blue);
+  backdrop-filter: blur(22px);
+  animation: loader-card-enter 0.42s ease both;
+}
+
+.site-loader-card::before {
+  content: "";
+  position: absolute;
+  inset: -140% auto auto -35%;
+  inline-size: 46%;
+  block-size: 300%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent-cyan) 20%, transparent), transparent);
+  transform: rotate(18deg);
+  animation: loader-shine 1.65s ease-in-out infinite;
+}
+
+.site-loader-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: 76px;
+  block-size: 76px;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 26%, transparent);
+  box-shadow: var(--glow-blue);
+}
+
+.site-loader-mark::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--accent-cyan) 34%, transparent);
+  animation: loader-pulse 1.25s ease-in-out infinite;
+}
+
+.site-loader-mark img {
+  inline-size: 42px;
+  block-size: 42px;
+}
+
+.site-loader-copy {
+  display: grid;
+  gap: 4px;
+  text-align: center;
+}
+
+.site-loader-copy strong {
+  color: var(--text-strong);
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.site-loader-copy span {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.site-loader-bar {
+  position: relative;
+  inline-size: 100%;
+  block-size: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-soft) 100%, transparent);
+}
+
+.site-loader-bar::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inline-size: 44%;
+  border-radius: inherit;
+  background: var(--gradient-primary);
+  animation: loader-bar 1.15s ease-in-out infinite;
+}
+
+.site-loader-skeleton {
+  display: grid;
+  gap: 10px;
+  inline-size: 100%;
+}
+
+.site-loader-skeleton span {
+  display: block;
+  block-size: 10px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent-cyan) 16%, transparent), transparent),
+    color-mix(in srgb, var(--surface-soft) 82%, transparent);
+  background-size: 180% 100%;
+  animation: loader-skeleton 1.4s ease-in-out infinite;
+}
+
+.site-loader-skeleton span:nth-child(2) {
+  inline-size: 78%;
+}
+
+.site-loader-skeleton span:nth-child(3) {
+  inline-size: 56%;
+}
+
 body::before,
 body::after {
   content: "";
@@ -161,6 +291,58 @@ body::after {
   animation: site-ambient-drift 18s ease-in-out infinite alternate;
 }
 
+[data-reveal] {
+  --reveal-delay: 0ms;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  filter: none;
+  transition:
+    opacity 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 720ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 720ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay);
+  will-change: opacity, transform, filter;
+}
+
+[data-reveal="fade-up"] {
+  transform: translate3d(0, 18px, 0);
+}
+
+[data-reveal="fade-in"] {
+  transform: none;
+}
+
+[data-reveal="slide-inline-start"] {
+  transform: translate3d(-22px, 0, 0);
+}
+
+[dir="rtl"] [data-reveal="slide-inline-start"] {
+  transform: translate3d(22px, 0, 0);
+}
+
+[data-reveal="slide-inline-end"] {
+  transform: translate3d(22px, 0, 0);
+}
+
+[dir="rtl"] [data-reveal="slide-inline-end"] {
+  transform: translate3d(-22px, 0, 0);
+}
+
+[data-reveal="scale-in"] {
+  transform: scale(0.96);
+}
+
+[data-reveal="blur-in"] {
+  transform: translate3d(0, 14px, 0) scale(0.98);
+  filter: blur(8px);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
 @keyframes site-grid-drift {
   from {
     transform: translate3d(0, 0, 0);
@@ -181,13 +363,104 @@ body::after {
   }
 }
 
+@keyframes loader-card-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes loader-pulse {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes loader-bar {
+  0% {
+    transform: translateX(130%);
+  }
+
+  100% {
+    transform: translateX(-230%);
+  }
+}
+
+@keyframes loader-skeleton {
+  0% {
+    background-position: 140% 0;
+  }
+
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+@keyframes loader-shine {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-10%, 0, 0) rotate(18deg);
+  }
+
+  45%,
+  58% {
+    opacity: 1;
+    transform: translate3d(220%, 0, 0) rotate(18deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
   body::before,
-  body::after {
+  body::after,
+  .site-loader-card,
+  .site-loader-card::before,
+  .site-loader-mark::after,
+  .site-loader-bar::before,
+  .site-loader-skeleton span {
     animation: none;
   }
 
   html {
     scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  [data-reveal] {
+    transition-duration: 560ms;
+  }
+
+  [data-reveal="blur-in"] {
+    filter: blur(3px);
+  }
+
+  body::before {
+    opacity: 0.38;
+    animation-duration: 42s;
+  }
+
+  body::after {
+    opacity: 0.7;
+    animation-duration: 28s;
   }
 }

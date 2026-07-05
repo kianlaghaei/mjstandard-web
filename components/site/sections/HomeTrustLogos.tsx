@@ -1,5 +1,7 @@
 import { trustLogos } from "@/data/homepage"
 
+import Reveal from "@/components/site/shared/Reveal"
+
 import styles from "../site-home.module.css"
 
 export default function HomeTrustLogos() {
@@ -8,7 +10,7 @@ export default function HomeTrustLogos() {
   return (
     <section className={styles.trustStrip} aria-label="نهادهای همکار و نشان‌های اعتماد">
       <div className={styles.container}>
-        <div className={styles.trustTickerShell}>
+        <Reveal className={styles.trustTickerShell} effect="fade-in">
           <div className={styles.trustIntro}>
             <span className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
@@ -37,7 +39,7 @@ export default function HomeTrustLogos() {
           <div className={styles.trustNote}>
             دامنه همکاری‌ها شامل آزمایشگاه، ارزیابی انطباق، استاندارد و پشتیبانی پروژه‌های صنعتی است.
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

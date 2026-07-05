@@ -3,6 +3,7 @@ import Link from "next/link"
 import { companyProfile } from "@/data/company"
 
 import styles from "@/components/site/pages/site-pages.module.css"
+import Reveal from "@/components/site/shared/Reveal"
 
 type ContactCtaProps = {
   title: string
@@ -22,7 +23,7 @@ export default function ContactCta({
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.ctaPanel}>
+        <Reveal className={styles.ctaPanel} effect="scale-in">
           <div>
             <span className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
@@ -50,7 +51,7 @@ export default function ContactCta({
               </a>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

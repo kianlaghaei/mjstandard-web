@@ -3,6 +3,8 @@ import Image from "next/image"
 import { companyProfile } from "@/data/company"
 import { aboutContent, homepageAssets } from "@/data/homepage"
 
+import Reveal from "@/components/site/shared/Reveal"
+
 import styles from "../site-home.module.css"
 
 export default function HomeAbout() {
@@ -10,7 +12,7 @@ export default function HomeAbout() {
     <section className={`${styles.section} ${styles.sectionMuted}`} id="about">
       <div className={styles.container}>
         <div className={styles.aboutGrid}>
-          <div>
+          <Reveal effect="fade-up">
             <div className={styles.sectionHeader}>
               <span className={styles.eyebrow}>
                 <span className={styles.eyebrowDot} />
@@ -28,9 +30,9 @@ export default function HomeAbout() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <div className={styles.aboutMedia}>
+          <Reveal className={styles.aboutMedia} delay={140} effect="scale-in">
             <div className={styles.aboutPatternPrimary} aria-hidden="true">
               <Image alt="" src={homepageAssets.aboutPatternPrimary} />
             </div>
@@ -52,7 +54,7 @@ export default function HomeAbout() {
                 از راه‌اندازی آزمایشگاه و آموزش تا استقرار استاندارد و ارزیابی انطباق.
               </p>
             </article>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

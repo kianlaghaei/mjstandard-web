@@ -3,6 +3,7 @@ import { expertRecords } from "@/data/experts"
 import ExpertCard from "../cards/ExpertCard"
 import ContactCta from "../shared/ContactCta"
 import PageHero from "../shared/PageHero"
+import Reveal from "../shared/Reveal"
 import SectionIntro from "../shared/SectionIntro"
 import SitePageLayout from "../shared/SitePageLayout"
 import styles from "./site-pages.module.css"
@@ -25,8 +26,10 @@ export default function ExpertsPage() {
             title="ظرفیت کارشناسی و تیم همکاری مجموعه"
           />
           <div className={styles.gridTwo}>
-            {expertRecords.map((expert) => (
-              <ExpertCard expert={expert} key={expert.id} />
+            {expertRecords.map((expert, index) => (
+              <Reveal delay={index * 80} effect="scale-in" key={expert.id}>
+                <ExpertCard expert={expert} />
+              </Reveal>
             ))}
           </div>
         </div>
