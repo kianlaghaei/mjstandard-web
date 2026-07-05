@@ -1,0 +1,36 @@
+import { labServices } from "@/data/homepage"
+
+import styles from "../site-home.module.css"
+
+export default function HomeLabServices() {
+  return (
+    <section className={styles.section} id="lab-services">
+      <div className={styles.container}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.eyebrow}>
+            <span className={styles.eyebrowDot} />
+            خدمات تخصصی
+          </span>
+          <h2 className={styles.sectionTitle}>خدمات آزمایشگاهی</h2>
+          <p className={styles.sectionDescription}>
+            این بخش با الگوی کارت‌های `Services1` بازطراحی شده تا خدمات اصلی در
+            یک شبکه روشن، سریع و قابل اسکن برای کاربر فارسی نمایش داده شوند.
+          </p>
+        </div>
+
+        <div className={styles.serviceGrid}>
+          {labServices.map((service, index) => (
+            <article className={styles.serviceCard} key={service.title}>
+              <div className={styles.serviceIcon}>{String(index + 1).padStart(2, "0")}</div>
+              <h3 className={styles.serviceTitle}>{service.title}</h3>
+              <p className={styles.serviceText}>{service.description}</p>
+              <a className={styles.serviceLink} href="#contact">
+                اطلاعات بیشتر
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
