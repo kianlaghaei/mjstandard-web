@@ -940,6 +940,12 @@
   content: "←";
 }
 
+.blogArchiveAction {
+  display: flex;
+  justify-content: center;
+  margin-block-start: 28px;
+}
+
 .faqLayout {
   display: grid;
   grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);

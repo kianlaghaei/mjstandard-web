@@ -1,8 +1,14 @@
 import Image from "next/image"
+import Link from "next/link"
 
-import { blogPosts } from "@/data/homepage"
+import { getFeaturedPosts, getLatestPosts } from "@/data/blog"
 
 import styles from "../site-home.module.css"
+
+const previewPosts = (() => {
+  const featuredPosts = getFeaturedPosts(3)
+  return featuredPosts.length === 3 ? featuredPosts : getLatestPosts(3)
+})()
 
 export default function HomeBlog() {
   return (
@@ -21,30 +27,36 @@ export default function HomeBlog() {
         </div>
 
         <div className={styles.blogGrid}>
-          {blogPosts.map((post) => (
-            <article className={styles.blogCard} key={post.title}>
-              <a className={styles.blogCardLink} href={post.href}>
+          {previewPosts.map((post) => (
+            <article className={styles.blogCard} key={post.slug}>
+              <Link className={styles.blogCardLink} href={`/blog/${post.slug}`}>
                 <div className={styles.blogImageWrap}>
                   <Image
-                    alt={post.title}
+                    alt={post.coverImageAlt}
                     className={styles.blogImage}
                     fill
                     sizes="(max-width: 720px) 100vw, (max-width: 1080px) 50vw, 33vw"
-                    src={post.image}
+                    src={post.coverImage}
                   />
                 </div>
                 <div className={styles.blogBody}>
                   <div className={styles.blogMeta}>
                     <span className={styles.blogCategory}>{post.category}</span>
-                    <span>{post.date}</span>
+                    <span>{post.publishedAtDisplay}</span>
                   </div>
                   <h3 className={styles.blogTitle}>{post.title}</h3>
-                  <p className={styles.blogSummary}>{post.summary}</p>
+                  <p className={styles.blogSummary}>{post.excerpt}</p>
                   <span className={styles.blogReadMore}>اطلاعات بیشتر</span>
                 </div>
-              </a>
+              </Link>
             </article>
           ))}
+        </div>
+
+        <div className={styles.blogArchiveAction}>
+          <Link className={styles.buttonGhost} href="/blog">
+            مشاهده همه مقالات
+          </Link>
         </div>
       </div>
     </section>
