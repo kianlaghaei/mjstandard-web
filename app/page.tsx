@@ -11,6 +11,7 @@ import HomeStats from "@/components/site/sections/HomeStats"
 import HomeTrainingServices from "@/components/site/sections/HomeTrainingServices"
 import HomeTrustLogos from "@/components/site/sections/HomeTrustLogos"
 import HomeWhyUs from "@/components/site/sections/HomeWhyUs"
+import BackToTopButton from "@/components/site/shared/BackToTopButton"
 
 import styles from "@/components/site/site-home.module.css"
 
@@ -32,6 +33,7 @@ export default function HomePage() {
         <HomeContact />
       </main>
       <SiteFooter />
+      <BackToTopButton />
     </div>
   )
 }

@@ -8,6 +8,8 @@ import { companyProfile } from "@/data/company"
 import { homepageAssets } from "@/data/homepage"
 import { primaryNavigation } from "@/data/navigation"
 
+import ThemeToggle from "@/components/site/shared/ThemeToggle"
+
 import styles from "../site-home.module.css"
 
 export default function SiteHeader() {
@@ -24,36 +26,8 @@ export default function SiteHeader() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.headerTopBar}>
-        <div className={`${styles.container} ${styles.headerTopBarInner}`}>
-          <div className={styles.headerTopBarList}>
-            <a
-              className={`${styles.headerTopBarItem} ${styles.ltrText}`}
-              href={`mailto:${contact.email}`}
-            >
-              <bdi className={styles.ltrText} dir="ltr">
-                {contact.email}
-              </bdi>
-            </a>
-            <a className={styles.headerTopBarItem} href="/accreditations">
-              <span className={styles.headerTopBarBadge}>NACI</span>
-              <bdi className={styles.ltrText} dir="ltr">
-                {companyProfile.naciCertificateNumber}
-              </bdi>
-            </a>
-          </div>
-
-          <div className={styles.headerTopBarList}>
-            <a className={`${styles.headerTopBarItem} ${styles.phoneNumber}`} href={`tel:${contact.phoneHref}`}>
-              <bdi dir="ltr">{contact.phoneDisplay}</bdi>
-            </a>
-            <span className={styles.headerTopBarItem}>همراه فنی از آزمون تا انطباق</span>
-          </div>
-        </div>
-      </div>
-
       <div className={`${styles.container} ${styles.headerSurface}`}>
-        <div className={`${styles.container} ${styles.headerInner}`}>
+        <div className={styles.headerInner}>
           <Link className={styles.brand} href="/">
             <Image src={homepageAssets.logo} alt="لوگوی معیارگران جهان" className={styles.brandMark} />
             <span className={styles.brandText}>
@@ -74,9 +48,7 @@ export default function SiteHeader() {
             </ul>
 
             <div className={styles.headerActions}>
-              <a className={styles.buttonGhost} href={`tel:${contact.phoneHref}`}>
-                تماس سریع
-              </a>
+              <ThemeToggle />
               <Link className={styles.buttonPrimary} href="/contact">
                 شروع همکاری
               </Link>
@@ -117,7 +89,7 @@ export default function SiteHeader() {
                 onClick={() => setIsMobileOpen(false)}
               >
                 <span>{item.label}</span>
-                <span aria-hidden="true">←</span>
+                <span aria-hidden="true">→</span>
               </Link>
             ))}
 

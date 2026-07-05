@@ -1,17 +1,7 @@
-import "/public/assets/css/vendors/bootstrap.min.css"
-import "/public/assets/css/vendors/swiper-bundle.min.css"
-import "/public/assets/css/vendors/aos.css"
-import "/public/assets/css/vendors/odometer.css"
-import "/public/assets/css/vendors/carouselTicker.css"
-import "/public/assets/css/vendors/magnific-popup.css"
-import "/public/assets/fonts/bootstrap-icons/bootstrap-icons.min.css"
-import "/public/assets/fonts/boxicons/boxicons.min.css"
-import "/public/assets/fonts/satoshi/satoshi.css"
-import "/public/assets/css/main.css"
-
-import "@/node_modules/react-modal-video/css/modal-video.css"
+import "./site-theme.css"
 
 import type { Metadata } from "next"
+import Script from "next/script"
 
 export const metadata: Metadata = {
     title: "معیارگران جهان",
@@ -24,7 +14,12 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="fa">
+        <html dir="rtl" lang="fa" data-theme="dark" suppressHydrationWarning>
+            <head>
+                <Script id="theme-init" strategy="beforeInteractive">
+                    {`try{var key='mjstandard-theme';var saved=localStorage.getItem(key);var system=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=(saved==='light'||saved==='dark')?saved:system;}catch(e){document.documentElement.dataset.theme='dark';}`}
+                </Script>
+            </head>
             <body style={{ ["--font-vazirmatn" as string]: '"Segoe UI", Tahoma, sans-serif' }}>
                 {children}
             </body>

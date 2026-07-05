@@ -41,17 +41,6 @@ export default function PageHero({ eyebrow, title, description, actions = [] }: 
               </div>
             ) : null}
           </div>
-
-          <div className={styles.heroMeta}>
-            <div className={styles.heroMetaCard}>
-              <span className={styles.heroMetaLabel}>رویکرد طراحی</span>
-              <strong className={styles.heroMetaValue}>فنی، مدرن و سازگار با RTL</strong>
-            </div>
-            <div className={styles.heroMetaCard}>
-              <span className={styles.heroMetaLabel}>تمرکز صفحه</span>
-              <strong className={styles.heroMetaValue}>{eyebrow}</strong>
-            </div>
-          </div>
         </div>
       </div>
     </section>
