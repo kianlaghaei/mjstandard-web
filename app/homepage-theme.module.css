@@ -1,0 +1,16 @@
+.homepageTheme {
+  --tc-theme-primary: #ba2c33;
+  --tc-theme-secondary: #025795;
+  --tc-theme-primary-soft: #f4e5e1;
+  --tc-theme-primary-light: #c9534f;
+  --tc-theme-primary-dark: #9c292c;
+  --tc-linear-1: linear-gradient(90deg, #025795 0%, #9fc1eb 100%);
+  --tc-linear-2: linear-gradient(90deg, #025795 0%, #4f86c5 100%);
+  --Theme-Primary: #025795;
+}
+
+.homepageTheme :global(.section-pricing-1 .ellipse-rotate-primary),
+.homepageTheme :global(.section-pricing-1 .ellipse-rotate-primary-sm),
+.homepageTheme :global(.section-faqs-2 .ellipse-center) {
+  background: var(--Theme-Primary) !important;
+}
