@@ -43,10 +43,10 @@ export default function HomeHero() {
               aria-hidden="true"
               className={styles.heroBadgeImage}
             />
-            <h2 className={styles.heroCardTitle}>همراهی فنی از ارزیابی تا تایید نهایی</h2>
+            <h2 className={styles.heroCardTitle}>همراهی فنی از ارزیابی اولیه تا دریافت گزارش نهایی</h2>
             <p className={styles.heroCardText}>
-              ساختار صفحه با الهام از `Hero5` بازطراحی شده اما به‌صورت استاتیک،
-              فارسی و متناسب با مسیر خدمات آزمایشگاهی و کنترل کیفیت.
+              از بررسی استانداردهای هدف و برنامه‌ریزی آزمون تا تحلیل نتایج و تحویل گزارش،
+              مسیر همکاری به‌صورت شفاف، مرحله‌به‌مرحله و متناسب با نیاز پروژه شما پیش می‌رود.
             </p>
 
             <div className={styles.heroMetricGrid}>
@@ -69,9 +69,9 @@ export default function HomeHero() {
               className={styles.heroBadgeImage}
             />
             <div>
-              <span className={styles.heroBadgeTitle}>آموزش، آزمون، استاندارد</span>
+              <span className={styles.heroBadgeTitle}>آموزش، آزمون و استاندارد</span>
               <span className={styles.heroBadgeText}>
-                از استقرار تیم QC تا آماده‌سازی مسیر اخذ تاییدیه
+                از استقرار تیم QC تا آماده‌سازی مسیر اخذ تاییدیه در کنار شما هستیم
               </span>
             </div>
           </div>

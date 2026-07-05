@@ -7,13 +7,13 @@ export type FooterLinkGroup = {
 }
 
 export const footerSummary =
-  "معیارگران جهان، آزمایشگاه تخصصی و مرجع همراهی تولیدکنندگان، واردکنندگان و تیم‌های کنترل کیفیت برای اخذ تاییدیه، انطباق و ارتقای کیفیت محصول است."
+  "معیارگران جهان، آزمایشگاه تخصصی و مرجع همراهی تولیدکنندگان، واردکنندگان و تیم‌های کنترل کیفیت برای اخذ تاییدیه، ارزیابی انطباق و ارتقای کیفیت محصول است."
 
 export const footerLinkGroups: FooterLinkGroup[] = [
   {
     title: "دسترسی سریع",
     links: [
-      { href: "#hero", label: "صفحه اصلی" },
+      { href: "#hero", label: "خانه" },
       { href: "#about", label: "درباره ما" },
       { href: "#why-us", label: "چرا معیارگران جهان" },
       { href: "#contact", label: "درخواست مشاوره" },
@@ -32,7 +32,8 @@ export const footerLinkGroups: FooterLinkGroup[] = [
 
 export const footerContact = {
   email: "info@mjstandard.com",
-  phone: "+98 21 1234 5678",
+  phoneHref: "+982112345678",
+  phoneDisplay: "+98 21 1234 5678",
   address: ["تهران، خیابان ولیعصر، پلاک ۱۲۸", "طبقه ۴، واحد ۱۰"],
 }
 

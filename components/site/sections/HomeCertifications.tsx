@@ -38,18 +38,18 @@ export default function HomeCertifications() {
           </span>
           <h2 className={styles.sectionTitle}>اعتبارهایی که باید در نگاه اول دیده شوند</h2>
           <p className={styles.sectionDescription}>
-            این اسلایدر از منطق فعلی Swiper استفاده می‌کند و برای جایگذاری مدارک،
-            گواهی‌ها و نمونه تاییدیه‌ها آماده است.
+            این بخش برای نمایش گواهی‌ها، مدارک و نمونه تاییدیه‌های مجموعه آماده شده است تا
+            بازدیدکننده بتواند تصویری سریع و روشن از دامنه فعالیت و اعتبارهای شما دریافت کند.
           </p>
         </div>
 
-        <div className={styles.swiperScope}>
-          <Swiper {...swiperOptions} className={styles.certificationsSlider}>
+        <div className={styles.swiperScope} dir="rtl">
+          <Swiper {...swiperOptions} className={styles.certificationsSlider} dir="rtl">
             {certifications.map((item) => (
               <SwiperSlide key={item.title}>
                 <article className={styles.certificateCard}>
                   <div className={styles.certificatePlaceholder}>
-                    جای تصویر گواهی یا مدرک
+                    نمونه گواهی، تاییدیه یا تصویر مدرک در این بخش نمایش داده می‌شود
                   </div>
                   <h3 className={styles.certificateTitle}>{item.title}</h3>
                   <p className={styles.certificateText}>{item.subtitle}</p>

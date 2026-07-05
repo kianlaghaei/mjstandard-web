@@ -18,16 +18,10 @@ export default function SiteFooter() {
         <div className={styles.footerGrid}>
           <section>
             <Link className={styles.brand} href="/">
-              <Image
-                src={homepageAssets.logo}
-                alt="لوگوی معیارگران جهان"
-                className={styles.brandMark}
-              />
+              <Image src={homepageAssets.logo} alt="لوگوی معیارگران جهان" className={styles.brandMark} />
               <span className={styles.brandText}>
                 <span className={styles.brandTitle}>معیارگران جهان</span>
-                <span className={styles.brandSubtitle}>
-                  آزمایشگاه تخصصی، آزمون و استاندارد
-                </span>
+                <span className={styles.brandSubtitle}>آزمایشگاه تخصصی، آزمون و استاندارد</span>
               </span>
             </Link>
             <p className={styles.footerText}>{footerSummary}</p>
@@ -51,13 +45,15 @@ export default function SiteFooter() {
           <section aria-label="اطلاعات تماس">
             <h2 className={styles.footerHeading}>اطلاعات تماس</h2>
             <div className={styles.footerList}>
-              <a className={styles.footerContactText} href={`mailto:${footerContact.email}`}>
-                {footerContact.email}
+              <a className={`${styles.footerContactText} ${styles.ltrText}`} href={`mailto:${footerContact.email}`}>
+                <bdi className={styles.ltrText} dir="ltr">
+                  {footerContact.email}
+                </bdi>
               </a>
-              <a className={styles.footerContactText} href={`tel:${footerContact.phone}`}>
-                {footerContact.phone}
+              <a className={`${styles.footerContactText} ${styles.phoneNumber}`} href={`tel:${footerContact.phoneHref}`}>
+                <bdi dir="ltr">{footerContact.phoneDisplay}</bdi>
               </a>
-              <p className={styles.footerContactText}>
+              <p className={`${styles.footerContactText} ${styles.footerAddress}`}>
                 {footerContact.address.map((line) => (
                   <span key={line}>
                     {line}

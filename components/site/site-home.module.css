@@ -15,7 +15,7 @@
 
 .section {
   position: relative;
-  padding-block: 88px;
+  padding-block: clamp(76px, 7.5vw, 100px);
   overflow: clip;
 }
 
@@ -25,8 +25,8 @@
 
 .sectionHeader {
   display: grid;
-  gap: 12px;
-  margin-block-end: 30px;
+  gap: 14px;
+  margin-block-end: clamp(28px, 4vw, 40px);
 }
 
 .eyebrow {
@@ -39,7 +39,7 @@
   border-radius: 999px;
   background: rgba(198, 33, 40, 0.08);
   color: #c62128;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 800;
 }
 
@@ -53,17 +53,31 @@
 .sectionTitle {
   margin: 0;
   color: #102536;
-  font-size: clamp(1.7rem, 2.5vw, 2.8rem);
-  line-height: 1.2;
+  font-size: clamp(1.8rem, 2.7vw, 2.65rem);
+  line-height: 1.45;
   font-weight: 900;
+  letter-spacing: -0.01em;
 }
 
 .sectionDescription {
   margin: 0;
   max-inline-size: 68ch;
   color: #4a6071;
-  line-height: 1.9;
+  line-height: 2;
   font-size: 1rem;
+}
+
+.phoneNumber,
+.ltrText {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+.ltrInput {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
 }
 
 .header {
@@ -79,7 +93,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
   min-block-size: 84px;
 }
 
@@ -89,6 +103,7 @@
   gap: 12px;
   color: inherit;
   text-decoration: none;
+  min-inline-size: 0;
 }
 
 .brandMark {
@@ -101,18 +116,21 @@
 
 .brandText {
   display: grid;
-  gap: 2px;
+  gap: 4px;
+  min-inline-size: 0;
 }
 
 .brandTitle {
-  font-size: 1.2rem;
+  font-size: 1.18rem;
   font-weight: 900;
+  line-height: 1.35;
 }
 
 .brandSubtitle {
   color: #5d7486;
   font-size: 0.84rem;
   font-weight: 700;
+  line-height: 1.7;
 }
 
 .nav {
@@ -138,7 +156,7 @@
   border-radius: 999px;
   color: #143249;
   text-decoration: none;
-  font-size: 0.97rem;
+  font-size: 0.96rem;
   font-weight: 800;
   transition:
     background-color 0.2s ease,
@@ -171,6 +189,7 @@
   border: 1px solid transparent;
   text-decoration: none;
   font-weight: 800;
+  line-height: 1.5;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -230,21 +249,23 @@
 
 .mobileNav {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   padding: 18px;
   border-radius: 24px;
   background: #ffffff;
   border: 1px solid rgba(16, 37, 54, 0.08);
   box-shadow: 0 18px 42px rgba(16, 37, 54, 0.1);
+  text-align: right;
 }
 
 .mobileNavLink {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-block-size: 46px;
-  padding-inline: 12px;
-  border-radius: 14px;
+  gap: 14px;
+  min-block-size: 54px;
+  padding-inline: 16px;
+  border-radius: 16px;
   color: #143249;
   text-decoration: none;
   font-weight: 800;
@@ -254,12 +275,12 @@
 .mobileNavActions {
   display: grid;
   gap: 10px;
-  margin-block-start: 8px;
+  margin-block-start: 4px;
 }
 
 .hero {
   position: relative;
-  padding-block: 110px 96px;
+  padding-block: clamp(96px, 8vw, 118px) clamp(82px, 7vw, 98px);
   background:
     radial-gradient(circle at 84% 18%, rgba(255, 255, 255, 0.18), transparent 22%),
     radial-gradient(circle at 16% 72%, rgba(255, 255, 255, 0.12), transparent 24%),
@@ -283,16 +304,17 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+  gap: 32px;
   align-items: center;
 }
 
 .heroTitle {
   margin: 14px 0 0;
-  font-size: clamp(2.6rem, 5vw, 5rem);
-  line-height: 1;
+  font-size: clamp(2.35rem, 5vw, 4.7rem);
+  line-height: 1.2;
   font-weight: 950;
+  letter-spacing: -0.02em;
 }
 
 .hero .eyebrow,
@@ -305,7 +327,7 @@
   margin: 18px 0 0;
   max-inline-size: 60ch;
   color: rgba(255, 255, 255, 0.88);
-  line-height: 1.95;
+  line-height: 2;
   font-size: 1.05rem;
 }
 
@@ -313,7 +335,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-block-start: 28px;
+  margin-block-start: 30px;
 }
 
 .heroHighlights {
@@ -329,7 +351,7 @@
   align-items: flex-start;
   gap: 12px;
   color: rgba(255, 255, 255, 0.92);
-  line-height: 1.75;
+  line-height: 1.85;
 }
 
 .heroHighlightIcon {
@@ -345,7 +367,7 @@
 
 .heroVisual {
   position: relative;
-  min-block-size: 460px;
+  min-block-size: 468px;
 }
 
 .heroCard {
@@ -353,7 +375,7 @@
   inset-block-start: 40px;
   inset-inline-end: 0;
   inline-size: min(100%, 450px);
-  padding: 28px;
+  padding: 30px;
   border-radius: 32px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -363,14 +385,15 @@
 
 .heroCardTitle {
   margin: 16px 0 0;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
+  line-height: 1.55;
   font-weight: 900;
 }
 
 .heroCardText {
   margin: 12px 0 0;
   color: rgba(255, 255, 255, 0.86);
-  line-height: 1.85;
+  line-height: 1.95;
 }
 
 .heroMetricGrid {
@@ -387,9 +410,11 @@
 }
 
 .heroMetricValue {
-  display: block;
-  font-size: 1.5rem;
+  display: inline-block;
+  font-size: 1.48rem;
   font-weight: 900;
+  direction: ltr;
+  unicode-bidi: isolate;
 }
 
 .heroMetricLabel {
@@ -397,7 +422,7 @@
   margin-block-start: 6px;
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.94rem;
-  line-height: 1.6;
+  line-height: 1.75;
 }
 
 .heroBadge {
@@ -432,7 +457,7 @@
   margin-block-start: 2px;
   color: #425a6c;
   font-size: 0.85rem;
-  line-height: 1.6;
+  line-height: 1.75;
 }
 
 .trustStrip {
@@ -484,7 +509,7 @@
 .aboutGrid {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
-  gap: 32px;
+  gap: 36px;
   align-items: center;
 }
 
@@ -566,16 +591,19 @@
 
 .aboutBulletText {
   color: #425a6c;
-  line-height: 1.9;
+  line-height: 1.95;
 }
 
 .serviceGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
 }
 
 .serviceCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 28px 24px;
   border-radius: 26px;
   background: #ffffff;
@@ -600,33 +628,34 @@
   background: linear-gradient(135deg, rgba(2, 87, 149, 0.1), rgba(198, 33, 40, 0.12));
   color: #025795;
   font-weight: 900;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .serviceTitle {
   margin: 18px 0 10px;
-  font-size: 1.18rem;
-  line-height: 1.5;
+  font-size: 1.14rem;
+  line-height: 1.65;
   font-weight: 900;
 }
 
 .serviceText {
   margin: 0;
   color: #486173;
-  line-height: 1.9;
+  line-height: 1.95;
 }
 
 .serviceLink {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-block-start: 18px;
+  margin-block-start: auto;
+  padding-block-start: 18px;
   color: #c62128;
   text-decoration: none;
   font-weight: 800;
 }
 
-.serviceLink::before {
+.serviceLink::after {
   content: "←";
 }
 
@@ -653,14 +682,15 @@
 
 .whyUsLeadTitle {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 1.45rem;
+  line-height: 1.55;
   font-weight: 900;
 }
 
 .whyUsLeadText {
   margin: 16px 0 0;
   color: rgba(255, 255, 255, 0.84);
-  line-height: 1.95;
+  line-height: 2;
 }
 
 .whyUsLeadMetrics {
@@ -678,7 +708,8 @@
 
 .whyUsLeadMetric strong {
   display: block;
-  font-size: 1.35rem;
+  font-size: 1.08rem;
+  line-height: 1.65;
   font-weight: 900;
 }
 
@@ -686,7 +717,7 @@
   display: block;
   margin-block-start: 6px;
   color: rgba(255, 255, 255, 0.78);
-  line-height: 1.6;
+  line-height: 1.75;
 }
 
 .whyUsCards {
@@ -706,14 +737,15 @@
 .whyUsCardTitle {
   margin: 0 0 12px;
   color: #0f2d44;
-  font-size: 1.08rem;
+  font-size: 1.06rem;
+  line-height: 1.65;
   font-weight: 900;
 }
 
 .whyUsCardText {
   margin: 0;
   color: #4a6071;
-  line-height: 1.85;
+  line-height: 1.9;
 }
 
 .statsSection {
@@ -743,12 +775,14 @@
   color: #025795;
   font-size: clamp(2rem, 3vw, 2.8rem);
   font-weight: 950;
+  direction: ltr;
+  unicode-bidi: isolate;
 }
 
 .statLabel {
   margin: 12px 0 0;
   color: #476072;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
 .certificationsSection {
@@ -761,7 +795,9 @@
 
 .certificateCard {
   block-size: 100%;
-  padding: 20px;
+  display: grid;
+  gap: 14px;
+  padding: 22px;
   border-radius: 26px;
   background: #ffffff;
   border: 1px solid rgba(16, 37, 54, 0.08);
@@ -776,24 +812,37 @@
   background:
     linear-gradient(135deg, rgba(2, 87, 149, 0.08), rgba(198, 33, 40, 0.08)),
     #f5f8fc;
-  border: 1px dashed rgba(16, 37, 54, 0.18);
-  color: #5c7385;
+  border: 1px solid rgba(16, 37, 54, 0.08);
+  color: #456073;
   font-weight: 800;
   text-align: center;
-  line-height: 1.8;
-  padding-inline: 16px;
+  line-height: 1.9;
+  padding-inline: 20px;
 }
 
 .certificateTitle {
-  margin: 16px 0 8px;
-  font-size: 1.08rem;
+  margin: 0;
+  font-size: 1.06rem;
+  line-height: 1.65;
   font-weight: 900;
 }
 
 .certificateText {
   margin: 0;
   color: #4a6071;
-  line-height: 1.8;
+  line-height: 1.9;
+}
+
+.swiperScope :global(.swiper-wrapper) {
+  align-items: stretch;
+}
+
+.swiperScope :global(.swiper-slide) {
+  block-size: auto;
+}
+
+.swiperScope :global(.swiper-pagination) {
+  inset-block-end: 0 !important;
 }
 
 .swiperScope :global(.swiper-pagination-bullet) {
@@ -835,10 +884,14 @@
   text-decoration: none;
 }
 
-.blogImage {
-  display: block;
+.blogImageWrap {
+  position: relative;
   inline-size: 100%;
   aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.blogImage {
   object-fit: cover;
 }
 
@@ -863,15 +916,15 @@
 
 .blogTitle {
   margin: 0;
-  font-size: 1.12rem;
-  line-height: 1.65;
+  font-size: 1.1rem;
+  line-height: 1.7;
   font-weight: 900;
 }
 
 .blogSummary {
   margin: 0;
   color: #4a6071;
-  line-height: 1.85;
+  line-height: 1.9;
 }
 
 .blogReadMore {
@@ -883,7 +936,7 @@
   font-weight: 800;
 }
 
-.blogReadMore::before {
+.blogReadMore::after {
   content: "←";
 }
 
@@ -902,9 +955,9 @@
 }
 
 .faqAsideText {
-  margin: 14px 0 0;
+  margin: 14px 0 22px;
   color: #4a6071;
-  line-height: 1.95;
+  line-height: 2;
 }
 
 .faqList {
@@ -933,6 +986,7 @@
   text-align: right;
   font: inherit;
   font-weight: 900;
+  line-height: 1.7;
 }
 
 .faqIcon {
@@ -947,10 +1001,11 @@
 }
 
 .faqAnswer {
+  margin: 0;
   padding-inline: 22px;
   padding-block: 0 20px;
   color: #4a6071;
-  line-height: 1.9;
+  line-height: 1.95;
 }
 
 .contactLayout {
@@ -974,7 +1029,7 @@
 .contactPanelText {
   margin: 16px 0 0;
   color: rgba(255, 255, 255, 0.86);
-  line-height: 1.95;
+  line-height: 2;
 }
 
 .contactHighlights {
@@ -992,13 +1047,14 @@
 .contactHighlightTitle {
   margin: 0 0 6px;
   font-size: 1rem;
+  line-height: 1.6;
   font-weight: 900;
 }
 
 .contactHighlightText {
   margin: 0;
   color: rgba(255, 255, 255, 0.78);
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
 .contactForm {
@@ -1038,6 +1094,8 @@
   background: #f8fbff;
   color: #102536;
   font: inherit;
+  line-height: 1.8;
+  text-align: right;
 }
 
 .field textarea {
@@ -1046,38 +1104,49 @@
 }
 
 .footer {
-  padding-block: 76px 28px;
+  padding-block: clamp(60px, 6vw, 76px) 24px;
   background: linear-gradient(180deg, #143c61 0%, #0c2b44 100%);
   color: #ffffff;
 }
 
 .footerGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 0.8fr)) minmax(0, 1fr);
-  gap: 24px;
-  padding-block-end: 28px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.85fr) minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(18px, 2vw, 24px);
+  padding-block-end: 24px;
   border-block-end: 1px solid rgba(255, 255, 255, 0.12);
+  align-items: start;
 }
 
 .footerHeading {
-  margin: 0 0 16px;
-  font-size: 1rem;
+  margin: 0 0 12px;
+  font-size: 0.94rem;
+  line-height: 1.6;
   font-weight: 900;
 }
 
 .footerText {
-  margin: 16px 0 0;
+  margin: 14px 0 0;
   color: rgba(255, 255, 255, 0.78);
-  line-height: 1.9;
+  line-height: 1.95;
+}
+
+.footer .brand {
+  align-items: flex-start;
+}
+
+.footer .brandTitle {
+  font-size: 1.05rem;
 }
 
 .footer .brandSubtitle {
   color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8rem;
 }
 
 .footerList {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1088,25 +1157,37 @@
 .footerLegalLink {
   color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
-  line-height: 1.8;
+  line-height: 1.85;
+}
+
+.footerContactText {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.footerAddress {
+  margin: 0;
 }
 
 .footerBottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  padding-block-start: 22px;
+  gap: 16px;
+  padding-block-start: 18px;
 }
 
 .footerLegal {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
 }
 
 .footerNote {
+  margin: 0;
   color: rgba(255, 255, 255, 0.72);
+  line-height: 1.8;
 }
 
 @keyframes logoMarquee {
@@ -1153,15 +1234,37 @@
   .mobilePanel {
     display: block;
   }
+
+  .footerGrid > :first-child {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 720px) {
   .section {
-    padding-block: 72px;
+    padding-block: 64px;
+  }
+
+  .sectionHeader {
+    gap: 12px;
+    margin-block-end: 26px;
+  }
+
+  .sectionTitle {
+    font-size: clamp(1.55rem, 6vw, 2rem);
+  }
+
+  .sectionDescription {
+    font-size: 0.96rem;
+    line-height: 1.95;
   }
 
   .headerInner {
     min-block-size: 74px;
+  }
+
+  .brand {
+    gap: 10px;
   }
 
   .brandMark {
@@ -1169,8 +1272,25 @@
     block-size: 52px;
   }
 
+  .brandTitle {
+    font-size: 1.05rem;
+  }
+
+  .brandSubtitle {
+    font-size: 0.78rem;
+  }
+
   .hero {
-    padding-block: 86px 72px;
+    padding-block: 82px 66px;
+  }
+
+  .heroTitle {
+    font-size: clamp(2rem, 9vw, 2.85rem);
+    line-height: 1.28;
+  }
+
+  .heroDescription {
+    font-size: 0.98rem;
   }
 
   .heroVisual {
@@ -1181,12 +1301,14 @@
     position: relative;
     inset: auto;
     inline-size: 100%;
+    padding: 24px;
   }
 
   .heroBadge {
     position: relative;
     inset: auto;
     margin-block-start: 16px;
+    max-inline-size: 100%;
   }
 
   .serviceGrid,
@@ -1194,7 +1316,9 @@
   .statsGrid,
   .whyUsCards,
   .footerGrid,
-  .formGrid {
+  .formGrid,
+  .whyUsLeadMetrics,
+  .heroMetricGrid {
     grid-template-columns: 1fr;
   }
 
@@ -1205,5 +1329,57 @@
 
   .logoCard {
     min-inline-size: 180px;
+  }
+
+  .mobileNav {
+    padding: 16px;
+  }
+
+  .mobileNavLink {
+    min-block-size: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: min(1180px, calc(100vw - 24px));
+  }
+
+  .section,
+  .trustStrip {
+    padding-block: 56px;
+  }
+
+  .hero {
+    padding-block: 74px 58px;
+  }
+
+  .heroCard,
+  .contactPanel,
+  .contactForm,
+  .faqAside,
+  .whyUsLeadCard,
+  .serviceCard,
+  .statCard,
+  .certificateCard {
+    padding: 22px 18px;
+  }
+
+  .aboutBullet,
+  .whyUsCard,
+  .contactHighlight {
+    padding: 16px;
+  }
+
+  .footer {
+    padding-block-start: 52px;
+  }
+
+  .footerGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .footerGrid > :first-child {
+    grid-column: auto;
   }
 }

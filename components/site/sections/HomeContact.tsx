@@ -33,11 +33,21 @@ export default function HomeContact() {
               </div>
               <div className={styles.field}>
                 <label htmlFor="contact-phone">{contactContent.form.phoneLabel}</label>
-                <input id="contact-phone" name="phone" placeholder="09xxxxxxxxx" type="tel" />
+                <input
+                  className={styles.ltrInput}
+                  dir="ltr"
+                  id="contact-phone"
+                  inputMode="tel"
+                  name="phone"
+                  placeholder={contactDetails.phoneDisplay}
+                  type="tel"
+                />
               </div>
               <div className={styles.field}>
                 <label htmlFor="contact-email">{contactContent.form.emailLabel}</label>
                 <input
+                  className={styles.ltrInput}
+                  dir="ltr"
                   id="contact-email"
                   name="email"
                   placeholder={contactDetails.email}

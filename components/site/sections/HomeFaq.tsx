@@ -24,8 +24,9 @@ export default function HomeFaq() {
           <aside className={styles.faqAside}>
             <h3 className={styles.whyUsLeadTitle}>اگر هنوز نقطه شروع پروژه روشن نیست</h3>
             <p className={styles.faqAsideText}>
-              این بخش با رویکرد `Faqs3` طراحی شده تا سوالات رایج درباره آزمون،
-              خدمات آموزشی، مسیر اخذ تاییدیه و نحوه همکاری را کوتاه و روشن پاسخ دهد.
+              پاسخ این پرسش‌های متداول می‌تواند مسیر اولیه همکاری را شفاف‌تر کند. اگر هنوز
+              درباره آزمون، خدمات آموزشی یا دریافت تاییدیه پرسشی دارید، از همین صفحه با ما
+              در تماس باشید.
             </p>
             <a className={styles.buttonGhost} href="#contact">
               دریافت مشاوره

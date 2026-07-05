@@ -15,8 +15,8 @@ export default function HomeBlog() {
           </span>
           <h2 className={styles.sectionTitle}>مطالب منتخب برای تصمیم‌های فنی بهتر</h2>
           <p className={styles.sectionDescription}>
-            ساختار این بخش از `Blog5` الهام گرفته، اما کارت‌ها برای محتوای فارسی،
-            تاریخ شمسی و CTA مرتبط با کسب‌وکار بازنویسی شده‌اند.
+            مجموعه‌ای از نوشته‌های کاربردی درباره استاندارد، کنترل کیفیت، راه‌اندازی
+            آزمایشگاه و نکات اجرایی که به تصمیم‌گیری دقیق‌تر تیم‌های فنی کمک می‌کند.
           </p>
         </div>
 
@@ -24,7 +24,15 @@ export default function HomeBlog() {
           {blogPosts.map((post) => (
             <article className={styles.blogCard} key={post.title}>
               <a className={styles.blogCardLink} href={post.href}>
-                <Image alt={post.title} className={styles.blogImage} src={post.image} />
+                <div className={styles.blogImageWrap}>
+                  <Image
+                    alt={post.title}
+                    className={styles.blogImage}
+                    fill
+                    sizes="(max-width: 720px) 100vw, (max-width: 1080px) 50vw, 33vw"
+                    src={post.image}
+                  />
+                </div>
                 <div className={styles.blogBody}>
                   <div className={styles.blogMeta}>
                     <span className={styles.blogCategory}>{post.category}</span>

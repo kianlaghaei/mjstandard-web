@@ -16,16 +16,10 @@ export default function SiteHeader() {
     <header className={styles.header}>
       <div className={`${styles.container} ${styles.headerInner}`}>
         <Link className={styles.brand} href="/">
-          <Image
-            src={homepageAssets.logo}
-            alt="لوگوی معیارگران جهان"
-            className={styles.brandMark}
-          />
+          <Image src={homepageAssets.logo} alt="لوگوی معیارگران جهان" className={styles.brandMark} />
           <span className={styles.brandText}>
             <span className={styles.brandTitle}>معیارگران جهان</span>
-            <span className={styles.brandSubtitle}>
-              آزمایشگاه تخصصی و مرجع خدمات استاندارد
-            </span>
+            <span className={styles.brandSubtitle}>آزمایشگاه تخصصی و مرجع خدمات استاندارد</span>
           </span>
         </Link>
 
@@ -68,7 +62,7 @@ export default function SiteHeader() {
                 onClick={() => setIsMobileOpen(false)}
               >
                 <span>{item.label}</span>
-                <span>←</span>
+                <span aria-hidden="true">←</span>
               </a>
             ))}
             <div className={styles.mobileNavActions}>
