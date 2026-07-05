@@ -58,7 +58,7 @@ export const aboutContent = {
   ],
 }
 
-export const labServices = [
+export const labServices :LabService[] = [
   {
     title: "فهرست استانداردهای ملی و بین‌المللی",
     description:
@@ -214,3 +214,12 @@ export const contactDetails = {
   phoneHref: "+982112345678",
   phoneDisplay: "+98 21 1234 5678",
 }
+
+export type LabService = {
+  title: string
+  description: string
+  badge?: string
+  tags?: string[]
+}
+
+

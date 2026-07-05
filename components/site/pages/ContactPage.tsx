@@ -8,6 +8,8 @@ import styles from "./site-pages.module.css"
 const { contact } = companyProfile
 
 export default function ContactPage() {
+  const mapQuery = encodeURIComponent(contact.addressLines.join("، "))
+
   return (
     <SitePageLayout>
       <PageHero
@@ -103,21 +105,16 @@ export default function ContactPage() {
                 </div>
                 <div className={styles.field}>
                   <label htmlFor="contact-subject">موضوع</label>
-                  <input
-                    id="contact-subject"
-                    name="subject"
-                    placeholder="نوع خدمت مورد نظر"
-                    type="text"
+                  <input id="contact-subject" name="subject" placeholder="نوع خدمت مورد نظر" type="text" />
+                </div>
+                <div className={`${styles.field} ${styles.fullWidthField}`}>
+                  <label htmlFor="contact-message">شرح درخواست</label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    placeholder="خدمت مورد نیاز، حوزه فعالیت، وضعیت فعلی و زمان‌بندی مدنظر را بنویسید."
                   />
                 </div>
-              </div>
-              <div className={styles.field}>
-                <label htmlFor="contact-message">شرح درخواست</label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  placeholder="خدمت مورد نیاز، حوزه فعالیت، وضعیت فعلی و زمان‌بندی مدنظر را بنویسید."
-                />
               </div>
               <button className={styles.buttonPrimary} type="button">
                 ارسال درخواست
@@ -129,20 +126,33 @@ export default function ContactPage() {
 
       <section className={`${styles.section} ${styles.sectionAlt}`}>
         <div className={styles.container}>
-          <SectionIntro
-            description="در این مرحله به‌جای نقشه تعاملی، یک پنل موقعیت و توضیح آدرس نمایش داده می‌شود."
-            eyebrow="موقعیت"
-            title="پنل آدرس و دسترسی"
-          />
-          <div className={styles.card}>
-            <h3 className={styles.cardTitle}>محل استقرار دفتر</h3>
-            <p className={styles.cardText}>
-              {contact.addressLines.join("، ")}
-            </p>
-            <p className={styles.note}>
-              در صورت نیاز به موقعیت دقیق‌تر یا هماهنگی حضوری، لطفا پیش از مراجعه تماس
-              بگیرید.
-            </p>
+          <SectionIntro eyebrow="موقعیت" title="پنل آدرس و دسترسی" />
+          <div className={styles.twoColumn}>
+            <div className={styles.card}>
+              <h3 className={styles.cardTitle}>محل استقرار دفتر</h3>
+              <p className={styles.cardText}>{contact.addressLines.join("، ")}</p>
+              <p className={styles.note}>
+                در صورت نیاز به موقعیت دقیق‌تر یا هماهنگی حضوری، لطفا پیش از مراجعه تماس بگیرید.
+              </p>
+              <a
+                className={styles.buttonGhost}
+                href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+                rel="noreferrer"
+                target="_blank"
+              >
+                باز کردن در Google Maps
+              </a>
+            </div>
+
+            <div className={styles.mapCard}>
+              <iframe
+                className={styles.mapFrame}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps?q=${mapQuery}&z=15&output=embed`}
+                title="موقعیت معیارگران جهان در Google Maps"
+              />
+            </div>
           </div>
         </div>
       </section>

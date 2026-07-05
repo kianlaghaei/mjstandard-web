@@ -1,9 +1,8 @@
 import type { Metadata } from "next"
 
-import SiteFooter from "@/components/site/layout/SiteFooter"
-import SiteHeader from "@/components/site/layout/SiteHeader"
 import BlogGrid from "@/components/site/blog/BlogGrid"
 import BlogHero from "@/components/site/blog/BlogHero"
+import SitePageLayout from "@/components/site/shared/SitePageLayout"
 import styles from "@/components/site/blog/blog.module.css"
 import { getAllCategories, getPublishedPosts } from "@/data/blog"
 
@@ -18,9 +17,8 @@ export default function BlogArchivePage() {
   const categories = getAllCategories()
 
   return (
-    <div className={styles.page} dir="rtl">
-      <SiteHeader />
-      <main>
+    <SitePageLayout pageClassName={styles.page}>
+      <>
         <BlogHero
           categoryCount={categories.length}
           description="در این بخش، مطالب کاربردی و فنی مرتبط با استاندارد، کنترل کیفیت، آزمون و راه‌اندازی آزمایشگاه را یکجا می‌خوانید."
@@ -46,8 +44,7 @@ export default function BlogArchivePage() {
             <BlogGrid posts={posts} />
           </div>
         </section>
-      </main>
-      <SiteFooter />
-    </div>
+      </>
+    </SitePageLayout>
   )
 }

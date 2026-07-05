@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-import SiteFooter from "@/components/site/layout/SiteFooter"
-import SiteHeader from "@/components/site/layout/SiteHeader"
 import BlogPostContent from "@/components/site/blog/BlogPostContent"
 import BlogPostHeader from "@/components/site/blog/BlogPostHeader"
 import RelatedPosts from "@/components/site/blog/RelatedPosts"
+import SitePageLayout from "@/components/site/shared/SitePageLayout"
 import styles from "@/components/site/blog/blog.module.css"
 import { getPostBySlug, getPublishedPosts, getRelatedPosts } from "@/data/blog"
 
@@ -46,16 +45,12 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const relatedPosts = getRelatedPosts(post, 3)
 
   return (
-    <div className={styles.page} dir="rtl">
-      <SiteHeader />
-      <main className={styles.section}>
-        <div className={`${styles.container} ${styles.postShell}`}>
-          <BlogPostHeader post={post} />
-          <BlogPostContent post={post} />
-          <RelatedPosts posts={relatedPosts} />
-        </div>
-      </main>
-      <SiteFooter />
-    </div>
+    <SitePageLayout pageClassName={styles.page} mainClassName={styles.section}>
+      <div className={`${styles.container} ${styles.postShell}`}>
+        <BlogPostHeader post={post} />
+        <BlogPostContent post={post} />
+        <RelatedPosts posts={relatedPosts} />
+      </div>
+    </SitePageLayout>
   )
 }

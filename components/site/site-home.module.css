@@ -18,10 +18,12 @@
   font-family: var(--font-vazirmatn), Tahoma, sans-serif;
 }
 
-.page > main {
+.page > main,
+.main {
   position: relative;
   z-index: 1;
-  padding-block-start: 12px;
+  padding-block-start: 18px;
+  padding-block-end: 32px;
 }
 
 .container {
@@ -31,8 +33,9 @@
 
 .section {
   position: relative;
-  padding-block: clamp(84px, 8vw, 112px);
+  padding-block: var(--section-space);
   overflow: clip;
+  scroll-margin-top: calc(var(--header-offset) + 24px);
 }
 
 .sectionMuted {
@@ -42,9 +45,9 @@
 }
 
 .sectionHeader {
-  display: grid;
-  gap: 14px;
-  margin-block-end: clamp(28px, 4vw, 42px);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .eyebrow {
@@ -83,10 +86,8 @@
 
 .sectionDescription {
   margin: 0;
-  max-inline-size: 68ch;
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 2.05;
+  line-height: 2;
+  max-inline-size: 56ch;
 }
 
 .phoneNumber,
@@ -106,8 +107,8 @@
   position: sticky;
   inset-block-start: 0;
   z-index: 90;
-  padding-block-start: 8px;
-  padding-block-end: 6px;
+  padding-block-start: 16px;
+  padding-block-end: 10px;
 }
 
 .headerTopBar {
@@ -164,7 +165,7 @@
 }
 
 .headerSurface {
-  padding: 0;
+  padding-inline: 4px;
   position: relative;
   z-index: 2;
 }
@@ -173,21 +174,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  min-block-size: 76px;
-  padding-block: 8px;
-  padding-inline: 18px;
-  border-radius: 22px;
-  background: color-mix(in srgb, var(--surface-strong) 96%, transparent);
+  gap: 28px;
+  min-block-size: 82px;
+  padding-block: 10px;
+  padding-inline: 22px;
+  border-radius: 26px;
+  background: var(--glass-panel-strong);
   border: 1px solid var(--border-strong);
   backdrop-filter: blur(22px);
-  box-shadow: 0 14px 36px color-mix(in srgb, var(--accent-blue) 10%, transparent);
+  box-shadow: var(--glass-stroke), var(--shadow-soft);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   min-inline-size: 0;
   color: inherit;
   text-decoration: none;
@@ -195,9 +196,9 @@
 }
 
 .brandMark {
-  inline-size: 50px;
-  block-size: 50px;
-  border-radius: 16px;
+  inline-size: 54px;
+  block-size: 54px;
+  border-radius: 18px;
   object-fit: cover;
   border: 1px solid color-mix(in srgb, white 18%, transparent);
   box-shadow: 0 10px 24px color-mix(in srgb, var(--site-bg) 24%, transparent);
@@ -205,12 +206,12 @@
 
 .brandText {
   display: grid;
-  gap: 2px;
+  gap: 4px;
   min-inline-size: 0;
 }
 
 .brandTitle {
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 900;
   line-height: 1.25;
   color: var(--text-strong);
@@ -218,34 +219,39 @@
 
 .brandSubtitle {
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  line-height: 1.45;
+  line-height: 1.6;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   min-inline-size: 0;
 }
 
 .navList {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 6px;
   min-inline-size: 0;
   flex-wrap: nowrap;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-soft) 88%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white 12%, transparent);
 }
 
 .navLink {
   display: inline-flex;
   align-items: center;
-  min-block-size: 40px;
-  padding-inline: 12px;
+  justify-content: center;
+  min-block-size: 44px;
+  padding-inline: 16px;
   border-radius: 999px;
   color: var(--text-main);
   text-decoration: none;
@@ -261,23 +267,27 @@
 
 .navLink:hover {
   color: var(--text-strong);
-  background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
+  background: color-mix(in srgb, var(--surface-soft) 98%, transparent);
   transform: translateY(-1px);
 }
 
 .headerActions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-shrink: 0;
+  padding: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-soft) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-soft) 78%, transparent);
 }
 
 .themeToggle {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  min-block-size: 42px;
-  padding-inline: 10px 14px;
+  min-block-size: 44px;
+  padding-inline: 12px 16px;
   border: 1px solid var(--border-soft);
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
@@ -331,9 +341,9 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-block-size: 46px;
-  padding-inline: 18px;
-  border-radius: 16px;
+  min-block-size: 48px;
+  padding-inline: 20px;
+  border-radius: 18px;
   border: 1px solid transparent;
   text-decoration: none;
   font-weight: 800;
@@ -392,11 +402,11 @@
   justify-content: center;
   flex-direction: column;
   gap: 4px;
-  inline-size: 42px;
-  block-size: 42px;
+  inline-size: 46px;
+  block-size: 46px;
   padding: 0;
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 22%, transparent);
-  border-radius: 16px;
+  border-radius: 18px;
   background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
 }
 
@@ -477,7 +487,7 @@
 
 .hero {
   position: relative;
-  padding-block: clamp(44px, 6vw, 72px) clamp(88px, 8vw, 106px);
+  padding-block: clamp(52px, 7vw, 84px) clamp(94px, 9vw, 118px);
   overflow: clip;
   isolation: isolate;
 }
@@ -514,7 +524,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
-  gap: 34px;
+  gap: clamp(28px, 3vw, 40px);
   align-items: start;
 }
 
@@ -544,24 +554,24 @@
 }
 
 .heroDescription {
-  margin: 20px 0 0;
-  max-inline-size: 60ch;
+  margin: 22px 0 0;
+  max-inline-size: 58ch;
   color: color-mix(in srgb, var(--text-main) 82%, transparent);
   font-size: 1.06rem;
-  line-height: 2.08;
+  line-height: 2.04;
 }
 
 .heroActions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-block-start: 30px;
+  gap: 14px;
+  margin-block-start: 34px;
 }
 
 .heroHighlights {
   display: grid;
-  gap: 12px;
-  margin: 28px 0 0;
+  gap: 14px;
+  margin: 34px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -590,17 +600,27 @@
 .heroTrustRow {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin-block-start: 24px;
+  gap: 16px;
+  margin-block-start: 30px;
 }
 
 .heroTrustCard {
-  padding: 18px;
-  border-radius: 22px;
-  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  padding: 20px;
+  border-radius: 24px;
+  background: var(--glass-panel);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 18%, transparent);
   backdrop-filter: blur(14px);
-  box-shadow: var(--glow-blue);
+  box-shadow: var(--glass-stroke), var(--glow-blue);
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.heroTrustCard:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent-cyan) 28%, transparent);
+  box-shadow: var(--glass-stroke), var(--glow-blue), 0 22px 42px color-mix(in srgb, var(--accent-blue) 16%, transparent);
 }
 
 .heroTrustValue {
@@ -627,7 +647,7 @@
   grid-template-areas:
     "signal card"
     "badge card";
-  gap: 16px;
+  gap: 18px;
   align-content: start;
   min-block-size: 0;
   padding-block-start: 10px;
@@ -658,11 +678,11 @@
   inline-size: auto;
   min-block-size: 100%;
   grid-area: card;
-  padding: 28px;
-  border-radius: 34px;
-  background: var(--gradient-surface);
+  padding: 32px;
+  border-radius: 36px;
+  background: var(--glass-panel-strong);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 20%, transparent);
-  box-shadow: var(--glow-blue), var(--shadow-card);
+  box-shadow: var(--glass-stroke), var(--glow-blue), var(--shadow-card);
   animation: fadeInScale 0.9s ease 0.3s both;
 }
 
@@ -704,15 +724,22 @@
 .heroMetricGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin-block-start: 22px;
+  gap: 16px;
+  margin-block-start: 24px;
 }
 
 .heroMetricCard {
-  padding: 16px;
-  border-radius: 20px;
+  padding: 18px;
+  border-radius: 22px;
   background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
   border: 1px solid color-mix(in srgb, var(--surface-stronger) 70%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white 24%, transparent);
+  transition: transform 0.24s ease, border-color 0.24s ease;
+}
+
+.heroMetricCard:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent-cyan) 24%, transparent);
 }
 
 .heroMetricValue {
@@ -737,11 +764,11 @@
   inset: auto;
   inline-size: auto;
   grid-area: signal;
-  padding: 18px;
-  border-radius: 24px;
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  padding: 20px;
+  border-radius: 26px;
+  background: var(--glass-panel);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 18%, transparent);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-stroke), var(--shadow-card);
   animation: fadeUp 0.72s ease 0.48s both;
 }
 
@@ -775,12 +802,12 @@
   gap: 14px;
   max-inline-size: none;
   grid-area: badge;
-  padding: 16px 18px;
-  border-radius: 24px;
-  background: color-mix(in srgb, var(--surface-card) 94%, transparent);
+  padding: 18px 20px;
+  border-radius: 26px;
+  background: var(--glass-panel);
   color: var(--text-dark);
   border: 1px solid color-mix(in srgb, var(--accent-blue) 20%, transparent);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-stroke), var(--shadow-card);
   animation: fadeUp 0.72s ease 0.56s both;
 }
 
@@ -811,12 +838,12 @@
 
 .trustTickerShell {
   display: grid;
-  gap: 18px;
-  padding: 24px;
-  border-radius: 30px;
-  background: var(--gradient-surface-soft);
+  gap: 20px;
+  padding: 28px;
+  border-radius: 32px;
+  background: var(--glass-panel-strong);
   border: 1px solid var(--border-soft);
-  box-shadow: var(--glow);
+  box-shadow: var(--glass-stroke), var(--glow);
 }
 
 .trustIntro {
@@ -857,12 +884,22 @@
   justify-content: center;
   gap: 12px;
   min-inline-size: 220px;
-  min-block-size: 82px;
-  padding-inline: 18px;
-  border-radius: 22px;
+  min-block-size: 84px;
+  padding-inline: 20px;
+  border-radius: 24px;
   background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
   box-shadow: inset 0 1px 0 color-mix(in srgb, white 8%, transparent);
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.logoCard:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent-cyan) 24%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white 12%, transparent), var(--shadow-soft);
 }
 
 .logoCard img {
@@ -1003,45 +1040,40 @@
 
 .servicePanel {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
-  gap: 18px;
-  align-items: end;
-  margin-block-end: 32px;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+  margin-block-end: 3rem;
 }
 
 .servicePanelAside {
-  display: grid;
-  gap: 12px;
-  padding: 22px;
-  border-radius: 26px;
-  background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent-cyan) 12%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1.75rem;
 }
 
 .servicePanelTitle {
-  color: var(--text-strong);
-  font-size: 1rem;
-  font-weight: 900;
+  margin: 0;
 }
 
 .servicePanelText {
   margin: 0;
-  color: var(--text-muted);
-  line-height: 1.95;
+  line-height: 1.9;
 }
 
 .serviceGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 5.5rem;
 }
 
 .serviceCard {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 1.5rem;
   min-block-size: 100%;
-  padding: 24px;
+  padding: 1.75rem;
   border-radius: 28px;
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--surface-elevated) 92%, transparent), color-mix(in srgb, var(--surface-strong) 96%, transparent)),
@@ -1072,7 +1104,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: .75rem;
+  margin-block-end: 0.25rem;
 }
 
 .serviceIcon {
@@ -1286,11 +1319,11 @@
 }
 
 .statsIntro {
-  padding: 26px;
-  border-radius: 30px;
-  background: var(--gradient-surface-soft);
+  padding: 30px;
+  border-radius: 32px;
+  background: var(--glass-panel-strong);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
-  box-shadow: var(--glow);
+  box-shadow: var(--glass-stroke), var(--glow);
 }
 
 .statsGrid {
@@ -1301,15 +1334,22 @@
 
 .statCard {
   display: grid;
-  gap: 12px;
-  padding: 24px;
-  border-radius: 26px;
-  background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
+  gap: 14px;
+  padding: 26px;
+  border-radius: 28px;
+  background: var(--glass-panel);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  box-shadow: var(--glass-stroke);
   transition:
     transform 0.24s ease,
     border-color 0.24s ease,
     box-shadow 0.24s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--accent-cyan) 26%, transparent);
+  box-shadow: var(--glass-stroke), var(--shadow-soft);
 }
 
 .statOverline {
@@ -1347,15 +1387,15 @@
 
 .certificateCard {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   block-size: 100%;
-  padding: 22px;
-  border-radius: 28px;
+  padding: 24px;
+  border-radius: 30px;
   position: relative;
   overflow: hidden;
-  background: var(--gradient-surface-soft);
+  background: var(--glass-panel-strong);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-stroke), var(--shadow-card);
 }
 
 .certificateCard::before {
@@ -1457,10 +1497,10 @@
 .blogFeatureCard,
 .blogCompactCard {
   overflow: hidden;
-  border-radius: 30px;
-  background: var(--gradient-surface-soft);
+  border-radius: 32px;
+  background: var(--glass-panel-strong);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-stroke), var(--shadow-card);
   transition:
     transform 0.24s ease,
     border-color 0.24s ease,
@@ -1562,11 +1602,11 @@
 .faqAside {
   display: grid;
   gap: 0;
-  padding: 28px;
-  border-radius: 32px;
-  background: var(--gradient-panel);
+  padding: 30px;
+  border-radius: 34px;
+  background: var(--glass-panel-strong);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
-  box-shadow: var(--glow);
+  box-shadow: var(--glass-stroke), var(--glow);
 }
 
 .faqAsideText {
@@ -1589,13 +1629,20 @@
 
 .faqItem {
   overflow: hidden;
-  border-radius: 24px;
-  background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
+  border-radius: 26px;
+  background: var(--glass-panel);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 12%, transparent);
+  box-shadow: var(--glass-stroke);
   transition:
     transform 0.24s ease,
     border-color 0.24s ease,
     box-shadow 0.24s ease;
+}
+
+.faqItem:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent-cyan) 24%, transparent);
+  box-shadow: var(--glass-stroke), var(--shadow-soft);
 }
 
 .faqButton {
@@ -1642,13 +1689,11 @@
 }
 
 .contactPanel {
-  padding: 30px;
-  border-radius: 32px;
-  background:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--accent-cyan) 14%, transparent), transparent 30%),
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-elevated) 96%, transparent), color-mix(in srgb, var(--surface-strong) 96%, transparent));
+  padding: 32px;
+  border-radius: 34px;
+  background: var(--glass-panel-strong);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
-  box-shadow: var(--glow);
+  box-shadow: var(--glass-stroke), var(--glow);
 }
 
 .contactPanel .sectionTitle {
@@ -1656,7 +1701,7 @@
 }
 
 .contactPanelText {
-  margin: 16px 0 0;
+  margin: 100px 0 0;
   color: color-mix(in srgb, var(--text-main) 80%, transparent);
   line-height: 2;
 }
@@ -1694,41 +1739,54 @@
 }
 
 .contactHighlightText {
-  margin: 0;
+  margin: 10;
   color: var(--text-muted);
   line-height: 1.82;
 }
 
 .contactForm {
   display: grid;
-  gap: 16px;
-  padding: 28px;
-  border-radius: 32px;
-  background: color-mix(in srgb, var(--surface-card) 96%, transparent);
+  gap: 18px;
+  padding: 30px;
+  direction: rtl;
+  border-radius: 34px;
+  background: var(--glass-panel-strong);
   border: 1px solid color-mix(in srgb, var(--accent-blue) 18%, transparent);
-  box-shadow: 0 28px 58px color-mix(in srgb, var(--accent-blue) 14%, transparent);
+  box-shadow: var(--glass-stroke), 0 28px 58px color-mix(in srgb, var(--accent-blue) 14%, transparent);
 }
 
 .formGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 18px;
 }
 
 .field {
   display: grid;
-  gap: 8px;
+  gap: 10px;
+  min-inline-size: 0;
+  min-width: 0;
 }
 
 .field label {
   color: var(--text-dark);
   font-size: 0.94rem;
   font-weight: 800;
+  text-align: right;
+}
+
+.fullWidthField {
+  grid-column: 1 / -1;
 }
 
 .field input,
 .field textarea {
   inline-size: 100%;
+  width: 100%;
+  max-inline-size: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-block-size: 52px;
   padding-block: 14px;
   padding-inline: 16px;
   border-radius: 18px;
@@ -1740,9 +1798,16 @@
   font: inherit;
   line-height: 1.8;
   text-align: right;
+  min-inline-size: 0;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: color-mix(in srgb, var(--text-muted) 86%, transparent);
+  opacity: 1;
 }
 
 .field input:focus,
@@ -1760,7 +1825,8 @@
 .contactFormActions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  margin-block-start: 4px;
 }
 
 .contactFormNote {
@@ -1788,10 +1854,11 @@
 }
 
 .footerBrandPanel {
-  padding: 22px;
-  border-radius: 28px;
-  background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+  padding: 24px;
+  border-radius: 30px;
+  background: var(--glass-panel);
   border: 1px solid color-mix(in srgb, var(--accent-cyan) 14%, transparent);
+  box-shadow: var(--glass-stroke);
 }
 
 .footerStats {
@@ -1879,6 +1946,7 @@
   padding: 12px 14px;
   border-radius: 18px;
   background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
 }
 
 .footerAddress {
@@ -1919,7 +1987,7 @@
   border-radius: 18px;
   background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
   color: var(--text-strong);
-  box-shadow: var(--glow-blue), var(--shadow-card);
+  box-shadow: var(--glass-stroke), var(--glow-blue), var(--shadow-card);
   backdrop-filter: var(--backdrop-blur);
   cursor: pointer;
   opacity: 0;
@@ -2025,6 +2093,14 @@
     transition: none;
   }
 
+  .heroTrustCard,
+  .heroMetricCard,
+  .logoCard,
+  .faqItem,
+  .statCard {
+    transition: none;
+  }
+
   .hero::before,
   .hero::after,
   .heroContent > *,
@@ -2109,13 +2185,18 @@
   }
 
   .header {
-    padding-block-start: 6px;
+    padding-block-start: 10px;
   }
 
   .headerInner {
-    min-block-size: 68px;
+    gap: 16px;
+    min-block-size: 72px;
     padding-block: 8px;
-    padding-inline: 14px;
+    padding-inline: 16px;
+  }
+
+  .headerSurface {
+    padding-inline: 0;
   }
 
   .hero {
@@ -2149,7 +2230,7 @@
 
 @media (max-width: 720px) {
   .section {
-    padding-block: 64px;
+    padding-block: var(--section-space-tight);
   }
 
   .sectionTitle {
@@ -2162,8 +2243,8 @@
   }
 
   .brandMark {
-    inline-size: 44px;
-    block-size: 44px;
+    inline-size: 46px;
+    block-size: 46px;
   }
 
   .brandTitle {

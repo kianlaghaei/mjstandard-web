@@ -75,15 +75,14 @@ export default function HomeContact() {
                   type="text"
                 />
               </div>
-            </div>
-
-            <div className={styles.field}>
-              <label htmlFor="contact-message">{contactContent.form.messageLabel}</label>
-              <textarea
-                id="contact-message"
-                name="message"
-                placeholder="محصول، استاندارد هدف، وضعیت فعلی و زمان‌بندی مدنظر را بنویسید."
-              />
+              <div className={`${styles.field} ${styles.fullWidthField}`}>
+                <label htmlFor="contact-message">{contactContent.form.messageLabel}</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  placeholder="محصول، استاندارد هدف، وضعیت فعلی و زمان‌بندی مدنظر را بنویسید."
+                />
+              </div>
             </div>
 
             <div className={styles.contactFormActions}>

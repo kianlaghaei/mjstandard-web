@@ -8,13 +8,26 @@ import styles from "@/components/site/pages/site-pages.module.css"
 
 type SitePageLayoutProps = {
   children: ReactNode
+  pageClassName?: string
+  mainClassName?: string
+  useDefaultPageClass?: boolean
+  useDefaultMainClass?: boolean
 }
 
-export default function SitePageLayout({ children }: SitePageLayoutProps) {
+export default function SitePageLayout({
+  children,
+  pageClassName,
+  mainClassName,
+  useDefaultPageClass = true,
+  useDefaultMainClass = true,
+}: SitePageLayoutProps) {
+  const pageClasses = [useDefaultPageClass ? styles.page : "", pageClassName ?? ""].filter(Boolean).join(" ")
+  const mainClasses = [useDefaultMainClass ? styles.main : "", mainClassName ?? ""].filter(Boolean).join(" ")
+
   return (
-    <div className={styles.page} dir="rtl">
+    <div className={pageClasses} dir="rtl">
       <SiteHeader />
-      <main className={styles.main}>{children}</main>
+      <main className={mainClasses}>{children}</main>
       <SiteFooter />
       <BackToTopButton />
     </div>
